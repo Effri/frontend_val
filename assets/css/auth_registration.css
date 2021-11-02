@@ -133,6 +133,36 @@ body {
 	height: 25px;
 }
 
+.gta-acount .btns_sec {
+	cursor: pointer;
+	display: flex;
+	width: 401px;
+	height: 48px;
+	background: rgba(255, 184, 0, 0.33);
+	border: 1px solid #FFDF8C;
+	box-sizing: border-box;
+	border-radius: 3px;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 22px;
+	text-align: center;
+	transition: all .33s;
+	position: relative;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	transition: all 0.6s;
+	/* transition: all .33s; */
+	margin-top: 5px;
+}
+
+.gta-acount .btns_sec:hover {
+	background: rgba(255, 184, 0, 0.75);
+	border: 1px solid #FFDF8C;
+	transition: all 0.6s;
+}
+
 
 .rec-text {
 	font-size: 13px;
@@ -252,21 +282,20 @@ body {
 	line-height: 29px;
 	text-align: center;
 	text-transform: uppercase;
-	transition: all .33s;
 	position: relative;
 	justify-content: center;
 	align-content: center;
 	flex-direction: column;
-	transition: box-shadow 0.6s;
-	/* transition: all .33s; */
+	/* transition: box-shadow 0.6s; */
+	transition: all .33s;
 }
 
 .gta-acount .btnEnter:hover {
 	/* opacity: 1; */
 	cursor: pointer;
 	box-shadow: 0px 4px 30px #FFB800, inset 0px 10px 30px rgba(255, 254, 251, 0.56);
-	transition: all .33s;
-	transition: box-shadow 0.6s;
+	/* transition: all .33s; */
+	/* transition: box-shadow 0.6s; */
 }
 
 .gta-acount .btnEnterSlot {
@@ -377,7 +406,10 @@ body {
 }
 
 
-.center {}
+.center {
+    display: flex;
+    justify-content: space-between;
+}
 
 @keyframes icon {
 	from {

@@ -266,8 +266,8 @@ align-items: center;
 
 	.gta-acount.slots .slots__cols {
 		display: flex;
-		padding-left: 27vh;
-		left: -12vh;
+		/* padding-left: 27vh; */
+		/* left: -12vh; */
 		margin: 11vh 0;
 		position: relative;
 		justify-content: center;
