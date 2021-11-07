@@ -1,4 +1,5 @@
 body {
+	height: 100vh;
 	background-image: url('../img/bg.png');
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -23,6 +24,10 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.switch-content.authDiv {
+	height: 100vh;
 }
 
 .orange {
@@ -659,30 +664,35 @@ create-person-2 .gta-acount input[type='text']:focus:-ms-input-placeholder,
 
 @media (max-width: 1400px) {
 	.gta-acount {
-		zoom: 0.7;
+		zoom: 0.9;
+		height: 110vh;
 	}
 }
 
 @media (max-width: 1300px) {
 	.gta-acount {
-		zoom: 0.6;
+		zoom: 0.9;
+		height: 110vh;
 	}
 }
 
 @media (max-width: 1140px) {
 	.gta-acount {
-		zoom: 0.58;
+		zoom: 0.9;
+		height: 110vh;
 	}
 }
 
 @media (max-width: 1000px) {
 	.gta-acount {
-		zoom: 0.5;
+		zoom: 0.8;
+		height: 120vh;
 	}
 }
 
 @media (max-width: 900px) {
 	.gta-acount {
-		zoom: 0.4;
+		zoom: 0.8;
+		height: 120vh;
 	}
 }

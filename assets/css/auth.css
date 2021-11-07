@@ -657,6 +657,7 @@ margin-top: -36px;
 	display: flex;
 	overflow: hidden;
 	min-height: 100vh;
+	/* height: 100vh; */
 	color: #fff;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -955,6 +956,8 @@ margin-top: -36px;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
+	align-items: center;
+	/* height: 100vh; */
 }
 
 .switch-content .rest-page.show {
