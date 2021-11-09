@@ -1,9 +1,9 @@
 
 
 	.characteristics span {
-		font-weight: 100;
-		color: #ef4343;
-		font-family: ProximaNova, sans-serif;
+		/* font-weight: 100; */
+		color: #cbafaf;
+		/* font-family: ProximaNova, sans-serif; */
 	}
 
 	.free-persone {
@@ -153,29 +153,30 @@
 		background-size: cover;
 	}
 
-	.gta-acount.slots .slots__wrapper {
-position: absolute;
-    top: -8vh;
-    left: 8vh;
-	}
+	.gta-acount.slots .slots__wrapper {/* position: absolute; *//* top: -8vh; *//* left: 8vh; */}
 
 	.gta-acount.slots .slots__wrapper header {
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: -ms-flexbox;
 		display: flex;
-		margin-bottom: 48px;
+		/* margin-bottom: 48px; */
 		-webkit-box-align: start;
 		-webkit-align-items: flex-start;
 		-ms-flex-align: start;
 		align-items: flex-start;
+		position: absolute;
+		top: 24px;
+		left: 57px;
+		flex-direction: column;
 	}
 
 	.gta-acount.slots .slots__wrapper header img {
-		width: 670px;
-		height: auto;
-		margin-top: 12px;
-		margin-left: 9px;
+		/* width: 670px; */
+		/* height: auto; */
+		/* margin-top: 12px; */
+		/* margin-left: 9px; */
+		/* width: 100%; */
 	}
 
 	.gta-acount.slots .slots__wrapper header p {
@@ -211,46 +212,17 @@ position: absolute;
 		font-size: 20px;
 	}
 
-	.gta-acount.slots .slots__wrapper header .red-bucks__total {
-display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    position: absolute;
-    top: 11%;
-    left: -4vh;
-    -webkit-box-align: baseline;
-    -webkit-align-items: baseline;
-    -ms-flex-align: baseline;
-    align-items: baseline;
-	}
+	.gta-acount.slots .slots__wrapper header .red-bucks__total {display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;/* position: absolute; *//* top: 11%; *//* left: -4vh; */-webkit-box-align: baseline;-webkit-align-items: baseline;-ms-flex-align: baseline;align-items: baseline;padding-left: 15px;flex-direction: column;}
 
-	.gta-acount.slots .slots__wrapper header .red-bucks__total b {
-font-size: 17px;
-    display: inline-flex;
-    position: absolute;
-    margin-right: 16px;
-    margin-top: 5vh;
-    width: 47vh;
-	}
+	.gta-acount.slots .slots__wrapper header .red-bucks__total b {/* font-size: 17px; *//* display: inline-flex; *//* position: absolute; *//* margin-right: 16px; *//* margin-top: 5vh; *//* width: 47vh; */font-style: normal;font-weight: 600;font-size: 24px;line-height: 29px;
+/* identical to box height */color: #FFFFFF;}
 
-	.gta-acount.slots .slots__wrapper header .red-bucks__total a {
-align-items: center;
-    line-height: 6vh;
-    text-align: center;
-    background: #607D8B;
-    font-size: 1.7vh;
-    color: white;
-    transition: all .33s;
-    width: 20vh;
-    height: 4vh;
-    left: 1px;
-    border: none;
-    border-radius: 0;
-    display: flex;
-    justify-content: center;
-    position: relative;
-	}
+.gta-acount.slots .slots__wrapper header .red-bucks__total b.orange {
+	color: #FFB800;
+}
+
+	.gta-acount.slots .slots__wrapper header .red-bucks__total a {font-style: normal;font-weight: 600;font-size: 24px;line-height: 29px;
+/* identical to box height */color: #FFFFFF;/* align-items: center; *//* line-height: 6vh; *//* text-align: center; *//* background: #607D8B; *//* font-size: 1.7vh; *//* color: white; *//* transition: all .33s; *//* width: 20vh; *//* height: 4vh; *//* left: 1px; *//* border: none; *//* border-radius: 0; *//* display: flex; *//* justify-content: center; *//* position: relative; */}
 	.helps {
 		position: absolute;
     bottom: 2vh;
@@ -268,9 +240,8 @@ align-items: center;
 		display: flex;
 		/* padding-left: 27vh; */
 		/* left: -12vh; */
-		margin: 11vh 0;
+		/* margin: 11vh 0; */
 		position: relative;
-		justify-content: center;
 	}
 	.gta-acount.slots .slots__cols .non-active__wrapper,
 	.gta-acount.slots .slots__cols .free__wrapper,
@@ -281,19 +252,20 @@ align-items: center;
 	}
 
 	.gta-acount.slots .slots__cols>div {
-		position: relative;
-		width: 450px;
-		height: 760px;
-		padding: 250px 42px;
-		-webkit-border-radius: 26px;
-		border-radius: 26px;
+		/* position: relative; */
+		width: 547px;
+		/* height: 760px; */
+		/* padding: 250px 42px; */
+		/* -webkit-border-radius: 26px; */
+		/* border-radius: 26px; */
+		display: flex;
 	}
 
 	.gta-acount.slots .slots__cols>div h2 {
-		line-height: 47px;
-		display: inline;
-		font-size: 2.5vh;
-		font-weight: 400;
+		/* line-height: 47px; */
+		/* display: inline; */
+		/* font-size: 2.5vh; */
+		/* font-weight: 400; */
 	}
 
 	.gta-acount.slots .slots__cols>div h2 b {
@@ -301,7 +273,7 @@ align-items: center;
 	}
 
 	.gta-acount.slots .slots__cols>div p {
-		font-size: 1.2vh;
+		/* font-size: 1.2vh; */
 	}
 
 	.gta-acount.slots .slots__cols>div.active {}
@@ -336,16 +308,12 @@ align-items: center;
 	}
 
 	.gta-acount.slots .slots__cols>div.active .active__wrapper .characteristics {
-		margin-bottom: 54px;
-    margin-top: 3.3vh;
+		/* margin-bottom: 54px; */
+		margin-top: 3.3vh;
 		list-style: none;
 	}
 
-	.gta-acount.slots .slots__cols>div.active .active__wrapper .characteristics li {
-font-size: 16px;
-    padding: 9px;
-    display: flex;
-	}
+	.gta-acount.slots .slots__cols>div.active .active__wrapper .characteristics li {/* font-size: 16px; *//* padding: 9px; */display: flex;}
 
 	.gta-acount.slots .slots__cols>div.active .active__wrapper .characteristics li .line {
 		margin-right: 8px;
@@ -501,9 +469,15 @@ position: relative;
 	}
 
 	.gta-acount.slots .slots__cols>div.free .free__wrapper h2 .free-title {
-		display: inline;
-		font-size: 2vh;
-		font-weight: 400;
+		/* display: inline; */
+		/* font-size: 2vh; */
+		/* font-weight: 400; */
+		width: 454px;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 36px;
+		line-height: 43px;
+		color: #FFFFFF;
 	}
 
 	.gta-acount.slots .slots__cols>div.free .free__wrapper h2 .create-title,
@@ -538,26 +512,30 @@ position: relative;
 
 	.gta-acount.slots .slots__cols>div.free .free__wrapper a.create-new {
 		align-items: center;
-		line-height: 6vh;
-		text-align: center;
-		background: #ef4343;
-		font-size: 1.7vh;
-		color: white;
-		transition: all .33s;
-		width: 56%;
-		left: 2vh;
-		border: none;
-		margin-top: 63%;
-		border-radius: 0;
-		display: flex;
-		justify-content: center;
-		position: relative;
+		margin-top: 35px;
+		/* line-height: 6vh; */
+		/* text-align: center; */
+		/* background: #ef4343; */
+		/* font-size: 1.7vh; */
+		/* color: white; */
+		/* transition: all .33s; */
+		/* width: 56%; */
+		/* left: 2vh; */
+		/* border: none; */
+		/* margin-top: 63%; */
+		/* border-radius: 0; */
+		/* display: flex; */
+		/* justify-content: center; */
+		/* position: relative; */
+		/* display: flex; */
+		/* margin: 0 auto; */
 	}
 
 	.gta-acount.slots .slots__cols>div.free .free__wrapper a.create-new:hover {
 		cursor: pointer;
-		background: #ffffff;
-		color: black;
+		/* background: #ffffff; */
+		/* color: black; */
+		border: none;
 		transition: all .33s;
 	}
 
@@ -570,15 +548,20 @@ position: relative;
 	}
 
 	.gta-acount.slots .slots__cols>div.free.create .free__wrapper h2 {
-		margin-bottom: 30px;
-		text-align: left;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 36px;
+		line-height: 43px;
+		color: #FFFFFF;
+		/* margin-bottom: 30px; */
+		/* text-align: left; */
 	}
 
 	.gta-acount.slots .slots__cols>div.free.create .free__wrapper h2 .create-title {
 	display: inline;
-    font-size: 2vh;
-    font-weight: 400;
-    margin-left: -11vh;
+	/* font-size: 2vh; */
+	/* font-weight: 400; */
+	/* margin-left: -11vh; */
 	}
 
 	.gta-acount.slots .slots__cols>div.free.create .free__wrapper h2 .free-title,
@@ -588,7 +571,7 @@ position: relative;
 
 	.gta-acount.slots .slots__cols>div.free.create .free__wrapper .blocked-cont,
 	.gta-acount.slots .slots__cols>div.free.create .free__wrapper a,
-	.gta-acount.slots .slots__cols>div.free.create .free__wrapper p {
+	.gta-acount.slots .slots__cols>div.free.create .free__wrapper .create_warn {
 		display: none;
 	}
 
@@ -683,17 +666,17 @@ position: relative;
 	}
 
 	.gta-acount.slots .slots__cols>div.free.create .free__wrapper a.cancel {
-	position: relative;
-    display: flex;
-    margin-top: 80px;
-    transition: all .33s;
-    margin-left: -109px;
-    font-size: 1.6vh;
-    text-align: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
+	/* position: relative; */
+	display: flex;
+	/* margin-top: 80px; */
+	/* transition: all .33s; */
+	/* margin-left: -109px; */
+	/* font-size: 1.6vh; */
+	/* text-align: center; */
+	/* -webkit-box-pack: center; */
+	/* justify-content: center; */
+	/* -webkit-box-align: center; */
+	/* align-items: center; */
 	}
 
 	.gta-acount.slots .slots__cols>div.free.create .free__wrapper a.cancel:hover {

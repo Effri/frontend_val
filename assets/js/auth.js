@@ -13,16 +13,16 @@ var slots = new Vue({
     el: ".authDiv",
     data: function() {
         return {
-            server: 0,
-            slotL: ["", "", 7, 0, 0, "-", 0, 0],
+            server: 0, 
+            slotL: ["Matthew", "BENSON", 7, 30, 40, "", 0, 50000000, 60, "TOYOTA MARK 2", "Магазин 24/7 #23", "Дом #588 (10 гаражных мест)"],
             slotM: ["", "", 7, 0, 0, "-", 0, 0],
             slotR: ["", "", 7, 0, 0, "-", 0, 0],
             blockL: ["Бан", "Cam", "then", "when"],
             blockM: ["Бан", "Cam", "then", "when"],
             blockR: ["Бан", "Cam", "then", "when"],
             uuids: [0, 0, 0],
-            redbucks: -1,
-            login: "username",
+            redbucks: 54,
+            login: "Matthew BENSON",
             currSlotId: 0,
             currSlot: ["", "", 7, 0, 0, "", 0, 0],
             emptySlot: ["", "", 7, 0, 0, "", 0, 0],
@@ -36,14 +36,52 @@ var slots = new Vue({
 
             chooseBuy: false,
             canChoose: false,
+            
+            defspeed: 504.295,
+            deffuel: 208.896,
         };
     },
     methods: {
         deleteChar: () => {
             U.trigger('delChar', slots.currSlotId, '', '', '');
-        }
+        },
+
     }
 })
+
+
+  
+//   setTimeout(function() {
+//     setProgress('progressBar', .8);
+//   }, 2000);
+
+// function chart(data) {
+
+
+// data = JSON.parse(data);
+// slots.blockL[2] = data[0][3];
+// let slot_lvl = this.slotL[0][3]
+// // const slots_lvl = data[0][3];
+// return document.querySelector('.percent').innerHTML = slot_lvl;
+//     //    document.querySelector('.svg').classList.add('loaded');
+//     //     let c = 0;
+//     //     const counter = (i) => {
+            
+            
+//     //         if (i <= slots_lvl) {
+//     //             setTimeout(() => {
+//     //                 c++;
+//     //                 document.querySelector('.percent').innerHTML = i;
+//     //                 counter(c);
+//     //             }, 23);
+//     //         }else {
+//     //             return document.querySelector('.percent').innerHTML = slots_lvl;
+//     //         }
+//     //     };
+//         // counter(c);
+
+
+// }
 
 function checkCode(str) {
     let ascii;
@@ -93,7 +131,20 @@ function toslots(data) {
             slots.slotL[5] = data[0][4];
             slots.slotL[6] = data[0][5];
             slots.slotL[7] = data[0][6];
-            slots.uuids[0] = data[0][7];
+            slots.slotL[8] = data[0][7]; // часы на сервере
+			slots.slotL[9] = data[0][8]; // машина
+			slots.slotL[10] = data[0][9]; // бизнес
+			slots.slotL[11] = data[0][10]; // личное жильё
+			slots.uuids[0] = data[0][11];
+            if(data[0][8] == "Отсутствует"){
+
+            }else if(data[0][9] == "Отсутствует"){
+
+            }else if(data[0][10] == "Отсутствует"){
+
+            }
+            
+            // slots.uuids[0] = data[0][7];
 
             $('#ped-one .stats-character').addClass('active');
             $('#ped-one a').addClass('active')
@@ -499,6 +550,12 @@ $(document).ready(() => {
         return false;
     });
 
+    // Кнопка "Войти"
+    $('.js-btn-enter-1').on('click', () => {
+        mp.trigger('selectChar', 1);
+        return false;
+    });
+
     // Кнопка "Разблокировать слот"
     $('.js-unlock-slot-1').on('click', () => {
         mp.trigger('buyNewSlot', 1);
@@ -537,6 +594,28 @@ $(document).ready(() => {
         mp.trigger('transferChar', 3, data["transfer-person-3__name"], data["transfer-person-3__sername"], data["transfer-person-3__pw"]);
         return false;
     });
+
+        // Кнопка "Создание персонажа"
+        $('.js-create-person-submit-1').on('click', () => {
+            let data = $('#create-person-1').toJSON();
+            data = JSON.parse(data);
+            mp.trigger('newChar', 1, data["new-person-1__name"], data["new-person-1__sername"]);
+            return false;
+        });
+    
+        $('.js-create-person-submit-2').on('click', () => {
+            let data = $('#create-person-2').toJSON();
+            data = JSON.parse(data);
+            mp.trigger('newChar', 2, data["new-person-2__name"], data["new-person-2__sername"]);
+            return false;
+        });
+    
+        $('.js-create-person-submit-3').on('click', () => {
+            let data = $('#create-person-3').toJSON();
+            data = JSON.parse(data);
+            mp.trigger('newChar', 3, data["new-person-3__name"], data["new-person-3__sername"]);
+            return false;
+        });
 
     // Подтверждение удаления персонажей
     $('.js-delete-person-submit-1').on('click', () => {

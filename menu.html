@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Auto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/fonts/akrobat.css">
+    <style>
+        body {
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+
+            margin: 0;
+            height: 100vh;
+        }
+
+        button,
+        input {
+            cursor: pointer;
+        }
+    </style>
+
+    <link rel="stylesheet" href="./assets/css/auto.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+</head>
+
+<body style="background-color: cornflowerblue;">
+    <script>
+        Vue.filter('formatThousands', (x) => {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        })
+    </script>
+
+    <div class="auto__content" v-if="active">
+        <div class="auto__block">
+            <div class="auto_bg"></div>
+            <div class="auto">
+                <!-- <div class="auto" v-if="active"> -->
+                <div class="grad"></div>
+
+                <div class="auto__title-block">
+                    <div class="auto__title">
+                        <div class="auto__title-info">
+                            <img src="./assets/img/auto/logo_auto.svg" alt="">
+                        </div>
+                        <div class="auto_information">Добро пожаловать в автосалон, здесь вы можете увидеть все
+                            удивительные автомобили нашего штата.</div>
+                        <div class="auto__close" @click="exit">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.4118 9L17.529 3.88278C18.157 3.25483 18.157 2.2367 17.529 1.60824L16.3918 0.470966C15.7638 -0.156989 14.7457 -0.156989 14.1172 0.470966L9 5.58818L3.88278 0.470966C3.25483 -0.156989 2.2367 -0.156989 1.60824 0.470966L0.470966 1.60824C-0.156989 2.23619 -0.156989 3.25432 0.470966 3.88278L5.58818 9L0.470966 14.1172C-0.156989 14.7452 -0.156989 15.7633 0.470966 16.3918L1.60824 17.529C2.23619 18.157 3.25483 18.157 3.88278 17.529L9 12.4118L14.1172 17.529C14.7452 18.157 15.7638 18.157 16.3918 17.529L17.529 16.3918C18.157 15.7638 18.157 14.7457 17.529 14.1172L12.4118 9Z"
+                                    fill="white" />
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="items">
+                    
+                    
+
+                    <!-- <div class="list">
+                        <i @click="left(1)" class="fas fa-chevron-left"></i>
+                        <div style="width: 190px;text-align: center;">{{colors[indexC]}}</div>
+                        <i @click="right(1)" class="fas fa-chevron-right"></i>
+                    </div> -->
+                    
+                    <div class="model_wrapper">
+                        <div class="model_list" v-for="(value, index) in models" :key="index" v-on:click="auto(index)">
+                            <div class="model_item" >{{models[index]}} </div>
+                            <div class="model_price">
+                                <div v-if="donate" class="pr">
+                                    <span class="model_price">{{prices[index]}} RedBucks</span>
+                                </div>
+                                <div v-else class="pr"><span class="model_price">$
+                                        {{prices[index]| formatThousands}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="auto_color_title">
+                        <div class="title">Цвет транспорта
+                        </div>
+                        <div class="color_line"></div>
+                    </div>
+                    
+                    <div class="color_wrapper">
+                        <div class="color_items" v-for="(value, index) in colors" :key="index">
+                            <div class="colors_block" v-bind:style="{ background: colors[index]}"
+                                v-on:click="color(index)"></div>
+                        </div>
+                    </div>
+                    <div id="log"></div>
+                </div>
+
+            </div>
+            <div class="auto_btns">
+                <div class="auto_buy">
+                    <span>Название машины</span>
+                    <div class="auto_show" v-show="auto_check">
+                        {{model_name}}
+                    </div>
+                    <div class="auto_show" v-show="!auto_check">
+                        Нет модели
+                    </div>
+                </div>
+                <div class="auto_buy">
+                    <span>Цена</span>
+                    <div class="auto_show" v-show="auto_check">
+                        $ {{model_price | formatThousands}}
+                    </div>
+                    <div class="auto_show" v-show="!auto_check">
+                        Отсутствует
+                    </div>
+                </div>
+
+                <div class="auto__btn-block">
+                    <div @click="buy" class="btn event">Приобрести машину</div>
+                </div>
+                <div class="auto_hotkeys">
+                    <div class="auto_hotkeys_block">
+                        <span>Используйте, чтобы вращать машину на 360*</span>
+                        <div class="auto_hotkey_btn first">
+                            <img src="./assets/img/auto/mouse.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="auto_hotkeys_block">
+                        <span>Нажмите, чтобы закрыть меню автосалона</span>
+                        <div class="auto_hotkey_btn">Esc</div>
+                    </div>
+                    <div class="auto_hotkeys_block">
+                        <span>Нажмите, чтобы приобрести машину</span>
+                        <div class="auto_hotkey_btn">Enter</div>
+                    </div>
+                    <div class="auto_hotkeys_block">
+                        <span>Используйте, чтобы листать список машин</span>
+                        <div class="auto_hotkey_btn last">
+                            <img src="./assets/img/auto/arr_1.svg" alt="">
+                        </div>
+                        <div class="auto_hotkey_btn last">
+                            <img src="./assets/img/auto/arr_2.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="auto__btn-block sec">
+                    <div @click="exit" class="btn event">Выйти</div>
+                    <div class="btn testdrive none">Тест-драйв</div>
+                    div @click="testdrive" class="btn testdrive">Тест-драйв</div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+    <script src="./assets/js/auto.js"></script>
+    <script>
+        // $( ".model_list" ).click(function() {
+        //     $('.model_list').css('background-color', '#FFB800');
+        //     $('.model_list').css('box-shadow', '0px 0px 27px rgba(255, 184, 0, 0.37)');
+        // });
+
+        $(".model_list").click(function(e) {
+            e.preventDefault();
+            $(".model_list").removeClass('active');
+            $(this).addClass('active');
+        })
+        
+    </script>
+
+</body>
+
+</html>
