@@ -59,6 +59,9 @@ U.init_debug = function () {
 			// 	-2,0,"umbokc"\
 			// ]');
 		}, 500);
+		// setTimeout(function () {
+		// 	createStyleSlots()
+		// }, 500);
 	}
 
 	if( (location.pathname.indexOf('phone.html')  != -1) || (location.pathname.indexOf('android.html')  != -1)) {

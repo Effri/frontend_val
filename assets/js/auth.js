@@ -14,7 +14,7 @@ var slots = new Vue({
     data: function() {
         return {
             server: 0, 
-            slotL: ["Matthew", "BENSON", 7, 30, 40, "", 0, 50000000, 60, "TOYOTA MARK 2", "Магазин 24/7 #23", "Дом #588 (10 гаражных мест)"],
+            slotL: ["Matthew", "BENSON", 7, 30, 40, "", 0, 50000000, 60, 'Отсутствует', "Магазин 24/7 #23", "Дом #588 (10 гаражных мест)"],
             slotM: ["", "", 7, 0, 0, "-", 0, 0],
             slotR: ["", "", 7, 0, 0, "-", 0, 0],
             blockL: ["Бан", "Cam", "then", "when"],
@@ -50,7 +50,7 @@ var slots = new Vue({
 })
 
 
-  
+
 //   setTimeout(function() {
 //     setProgress('progressBar', .8);
 //   }, 2000);
@@ -92,6 +92,44 @@ function checkCode(str) {
     return true;
 }
 
+// setTimeout(function() {
+//     createStyleSlots(data);
+// }, 2000);
+// function createStyleSlots(data){
+//     data = JSON.parse(data);
+//     slots.slotL[9] = data[0][8];
+
+//     console.log(slots.slotL[9]);
+
+//     if (slots.slotL[9] == 'Отсутствует'){
+//         $('.character_block.red ').addClass('active');
+//         $('.character_block.red .charact_info').css('display', 'none')
+//         console.log("типо работает")
+        
+//     } else {
+//         console.log("не работает")
+//     }
+
+//     if (data[0][8] == 'Отсутствует'){
+//         $('.character_block.red ').addClass('active');
+//         $('.character_block.red .charact_info').css('display', 'none')
+        
+//     } 
+//     else if(data[0][9] == "Отсутствует"){
+//         $('.character_block.red .charact_info').addClass('active');
+//         $('.character_block.red .charact_info').css('display', 'none')
+        
+//     } else if(data[0][10] == "Отсутствует"){
+//         $('.character_block.red .charact_info').addClass('active');
+//         $('.character_block.red .charact_info').css('display', 'none')
+//     } else {
+//         $('.character_block.red .charact_info').remove('active');
+//         $('.character_block.red .charact_info').css('display', 'none')
+//     }
+// };
+
+// console.log(createStyleSlots())
+
 function toslots(data) {
     regPage.removeClass('show');
     authPage.removeClass('show');
@@ -113,6 +151,12 @@ function toslots(data) {
         });
         removeModal(1)
     } else {
+        
+        if (data[0][8] == 'Отсутствует') {
+        $('.character_block.red ').addClass('active');
+        $('.character_block.red .charact_info').css('display', 'none')
+        console.log("типо работает")
+        } 
         if (data[0][0] == 'ban') {
             $('#name-1').html('ПЕРСОНАЖ ЗАБЛОКИРОВАН')
             $('#btn-character-1').css('display', 'none')
@@ -136,13 +180,19 @@ function toslots(data) {
 			slots.slotL[10] = data[0][9]; // бизнес
 			slots.slotL[11] = data[0][10]; // личное жильё
 			slots.uuids[0] = data[0][11];
-            if(data[0][8] == "Отсутствует"){
-
-            }else if(data[0][9] == "Отсутствует"){
-
-            }else if(data[0][10] == "Отсутствует"){
-
-            }
+            
+            
+            // else if(data[0][9] == "Отсутствует"){
+            //     $('.character_block.red .charact_info').addClass('active');
+            //     $('.character_block.red .charact_info').css('display', 'none')
+                
+            // } else if(data[0][10] == "Отсутствует"){
+            //     $('.character_block.red .charact_info').addClass('active');
+            //     $('.character_block.red .charact_info').css('display', 'none')
+            // } else {
+            //     $('.character_block.red .charact_info').remove('active');
+            //     $('.character_block.red .charact_info').css('display', 'none')
+            // }
             
             // slots.uuids[0] = data[0][7];
 
@@ -155,7 +205,10 @@ function toslots(data) {
                 return false;
             });
         }
+        
     }
+
+    
 
     if (data[1] == -1) {
         $('#ped-two .create-character').addClass('active');
@@ -254,6 +307,7 @@ function toslots(data) {
     U.trigger('rederchar');
 
     //U.trigger('chooseChar', slots.uuids[0]);
+    
 }
 
 function createCharacter(id) {

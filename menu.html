@@ -22,7 +22,7 @@
         }
     </style>
 
-    <link rel="stylesheet" href="./assets/css/auto.css">
+    <link rel="stylesheet" href="./assets/css/auto_new.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
@@ -94,12 +94,15 @@
                     
                     <div class="color_wrapper">
                         <div class="color_items" v-for="(value, index) in colors" :key="index">
-                            <div class="colors_block" v-bind:style="{ background: colors[index]}"
+                            <div class="colors_block" 
+                            v-bind:style="{ background: '#' + [colors[index]]}"
                                 v-on:click="color(index)"></div>
                         </div>
                     </div>
                     <div id="log"></div>
                 </div>
+
+                
 
             </div>
             <div class="auto_btns">
@@ -165,17 +168,11 @@
     </script>
     <script src="./assets/js/auto.js"></script>
     <script>
-        // $( ".model_list" ).click(function() {
-        //     $('.model_list').css('background-color', '#FFB800');
-        //     $('.model_list').css('box-shadow', '0px 0px 27px rgba(255, 184, 0, 0.37)');
-        // });
-
         $(".model_list").click(function(e) {
             e.preventDefault();
             $(".model_list").removeClass('active');
             $(this).addClass('active');
         })
-        
     </script>
 
 </body>

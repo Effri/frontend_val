@@ -1,13 +1,14 @@
 var auto = new Vue({
     el: ".auto__content",
     data: {
-        active: true,
+        active: false,
         bizInfoActive: false,
         bizSellPrice: 1,
         indexM: 0,
         indexC: 0,
         models: ["Mercedes Benz AMG63", "model2", "model2", "model2", "Mercedes Benz AMG63", "model2", "model2", "model2","Mercedes Benz AMG63", "model2", "model2", "model2hgffffffffffffffffffff", "Mercedes Benz AMG63", "model2", "model2", "model2","Mercedes Benz AMG63", "model2", "model2", "model2", "Mercedes Benz AMG63", "model2", "model2", "model2","Mercedes Benz AMG63", "model2", "model2", "model2", "Mercedes Benz AMG63", "model2", "model2", "model2"],
-        colors: ["#878694","#8E5125","#909423", "#699325", "#8C50F9", "#1E5595", "#199068", "#82131A", "#872226", "#7A1692","#03208C", "#23232D", "#54252E", "#3F3D15", "#343F16", "#252F15"],
+        colors: ["878694","8E5125","909423", "699325", "8C50F9", "1E5595", "199068", "82131A", "872226", "7A1692","03208C", "23232D", "54252E", "3F3D15", "343F16", "252F15"],
+        // colors = [],
         prices: [5000000,199,1999,255393,5000000,199,1999,255393,5000000,199,1999,255393,5000000,199,1999,255393,5000000,199,1999,255393,5000000,199,1999,255393,5000000,199,1999,255393,5000000,199,1999,255393],
         header: "Автосалон",
         donate: false,
@@ -15,12 +16,7 @@ var auto = new Vue({
         model_price: 0,
         model_name: "",
     },
-    set: {
-        
-    },
-    get: {
 
-    },
     computed: {
         bizIncome: function() {
             return this.bizSellPrice*0.04;
