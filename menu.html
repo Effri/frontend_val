@@ -22,19 +22,95 @@
         }
     </style>
 
+    <!-- <link rel="stylesheet" href="./assets/css/fmenu_copy.css"> -->
+    <link rel="stylesheet" href="./assets/css/fmenu.css">
     <link rel="stylesheet" href="./assets/css/auto_new.css">
+    <link rel="stylesheet" href="./assets/fonts/akrobat.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 
 </head>
 
-<body style="background-color: cornflowerblue;">
+<body>
     <script>
         Vue.filter('formatThousands', (x) => {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         })
     </script>
+
+    <!-- Menu fraction -->
+    <div class="fmenu" v-if="active">
+        <div class="fmenu_wrapper">
+            
+            <div class="left">
+                <div class="btns">
+                    <div @click="btn(1,$event)" class="btn" v-bind:class="{active: btnactive[1]}">Члены организации
+                    </div>
+                    <div @click="btn(2,$event)" class="btn" v-bind:class="{active: btnactive[2]}">Принять в организацию
+                    </div>
+                    <div @click="btn(3,$event)" class="btn" v-bind:class="{active: btnactive[3]}">Выгнать из организации
+                    </div>
+                    <div @click="btn(4,$event)" class="btn" v-bind:class="{active: btnactive[4]}">Изменить ранг</div>
+                    <div @click="btn(0,$event)" class="btn close">Закрыть планшет организации</div>
+                </div>
+            </div>
+            <div class="right" v-show="submenu">
+                <div class="info_wrapper" v-if="menu == 1">
+                <div class="info" v-if="menu == 1">
+                    <p class="online">Онлайн <span>{{oncounter}}</span></p>
+                    <p class="offline">Не в игре <span>{{ofcounter}}</span></p>
+                    <p class="all">Всего <span>{{counter}}</span></p>
+                </div>
+                <!-- <hr v-if="menu == 1"> -->
+                <table v-if="menu == 1" border="0" cellspacing="1" cellpadding="1">
+                    <!-- <div class="table_row">
+                        <div>ID</div>
+                        <div>Имя</div>
+                        <div>Уровень</div>
+                        <div>Ранг</div>
+                    </div>
+                    <div class="table_row" v-for="member in members">
+                        <div>{{member[1]}}</div>
+                        <div v-bind:class="[ member[0] ? 'online' : 'offline' ]">{{member[2]}}</div>
+                        <div>{{member[3]}}</div>
+                        <div>{{member[4]}}</div>
+                    </div> -->
+                    <tr class="main">
+                        <th>ID</th>
+                        <th>Имя</th>
+                        <th>Уровень</th>
+                        <th>Ранг</th>
+                    </tr>
+                    <tr class="tr" v-for="member in members">
+                        <th>{{member[1]}}</th>
+                        <th v-bind:class="[ member[0] ? 'online' : 'offline' ]">{{member[2]}}</th>
+                        <th>{{member[3]}}</th>
+                        <th>{{member[4]}}</th>
+                        <div></div>
+                    </tr>
+                </table>
+                </div>
+                <div class="active_wrapper" v-if="menu > 1">
+                    <div class="active_main">
+                <h1 v-if="menu > 1">{{header[menu]}}</h1>
+                <div class="input_item">
+                    <span v-if="menu > 1">Имя_Фамилия</span>
+                <input placeholder="Имя_Фамилия" v-model="input" v-if="menu > 1">
+                </div>
+                <div class="input_item">
+                    <span v-if="menu > 3">Ранг (от N до N)</span>
+                <input placeholder="Новый ранг" v-model="rank" v-if="menu > 3">
+                </div>
+                <div @click="submit" class="btn-submit" v-if="menu > 1">{{btntext[menu]}}</div>
+                </div>
+                <div class="active_bottom_text">{{rigthtext[menu]}}</div></div>
+            </div>
+            <img class="img_1" src="./assets/img/fmenu/img1.svg" alt="">
+            <div class="img_2"></div>
+            <img class="img_3" src="./assets/img/fmenu/img2.svg" alt="">
+        </div>
+    </div>
 
     <div class="auto__content" v-if="active">
         <div class="auto__block">
@@ -63,18 +139,18 @@
                 </div>
 
                 <div class="items">
-                    
-                    
+
+
 
                     <!-- <div class="list">
                         <i @click="left(1)" class="fas fa-chevron-left"></i>
                         <div style="width: 190px;text-align: center;">{{colors[indexC]}}</div>
                         <i @click="right(1)" class="fas fa-chevron-right"></i>
                     </div> -->
-                    
+
                     <div class="model_wrapper">
                         <div class="model_list" v-for="(value, index) in models" :key="index" v-on:click="auto(index)">
-                            <div class="model_item" >{{models[index]}} </div>
+                            <div class="model_item">{{models[index]}} </div>
                             <div class="model_price">
                                 <div v-if="donate" class="pr">
                                     <span class="model_price">{{prices[index]}} RedBucks</span>
@@ -91,18 +167,17 @@
                         </div>
                         <div class="color_line"></div>
                     </div>
-                    
+
                     <div class="color_wrapper">
                         <div class="color_items" v-for="(value, index) in colors" :key="index">
-                            <div class="colors_block" 
-                            v-bind:style="{ background: '#' + [colors[index]]}"
+                            <div class="colors_block" v-bind:style="{ background: '#' + [colors[index]]}"
                                 v-on:click="color(index)"></div>
                         </div>
                     </div>
                     <div id="log"></div>
                 </div>
 
-                
+
 
             </div>
             <div class="auto_btns">
@@ -167,10 +242,19 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
     </script>
     <script src="./assets/js/auto.js"></script>
+    <script src="./assets/js/fmenu.js"></script>
     <script>
-        $(".model_list").click(function(e) {
+        $(".model_list").click(function (e) {
             e.preventDefault();
             $(".model_list").removeClass('active');
+            $(this).addClass('active');
+        })
+    </script>
+
+    <script>
+        $(".btn").click(function (e) {
+            e.preventDefault();
+            $(".btn").removeClass('active');
             $(this).addClass('active');
         })
     </script>
