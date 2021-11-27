@@ -6,7 +6,7 @@ body {
   overflow: hidden;
   margin: 0;
   font-family: "Akrobat";
-  background-color: #878787;
+  background-color: #525252;
 }
 
 p {
@@ -330,8 +330,8 @@ p {
   display: flex;
   position: absolute;
   width: fit-content;
-  top: calc(50% - 0px);
-  left: 34%;
+  top: calc(60% - 0px);
+  left: 50.5%;
   transform: translate(-60%, -81%);
   align-items: baseline;
 }
@@ -363,7 +363,7 @@ p {
   color: #FFFFFF;
   /* top: calc(50% - 0px); */
   /* left: 80%; */
-  transform: translate(92%, 830%);
+  transform: translate(95%, 948%);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
@@ -371,8 +371,8 @@ p {
   position: absolute;
   width: 19px;
   height: 110px;
-  top: 25%;
-  left: 77.5%;
+  top: 32%;
+  left: 83%;
 }
 
 .mask_fuel {
@@ -395,6 +395,44 @@ p {
   background-repeat: no-repeat;
   position: absolute;
   width: 19px;
+  top: 0;
+  z-index: 1;
+}
+
+.current_speed_count {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  /* top: calc(50% - 0px); */
+  /* left: 80%; */
+  transform: translate(95%, 948%);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.current-speed_wrapper {
+  position: absolute;
+  width: 353px;
+  height: 143px;
+  top: 17%;
+  left: 0%;
+}
+
+.current-speed_shk {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: url(../img/hud/speed_2.png);
+  background-repeat: no-repeat;
+}
+
+.current_speed_scale {
+  background: url(../img/hud/speed_1.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 19px;
+  height: 143px;
   top: 0;
   z-index: 1;
 }

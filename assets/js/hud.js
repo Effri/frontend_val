@@ -17,7 +17,7 @@
         inVeh: true,
 		belt: false,
         engine: false,
-        doors: true,
+        doors: false,
         // speed: 0,
         // fuel: 0,
         hp: 0,
@@ -31,9 +31,10 @@
         hotkeyblock: false,
         givebonus: true,
 
-        speed: 40,
-        fuel: 70,
+        speed: 169,
+        fuel: 72,
         maxfuel: 100,
+        maxspeed: 400,
     },
     computed: {
         

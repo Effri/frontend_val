@@ -369,8 +369,8 @@ p {
 	display: flex;
 	position: absolute;
 	width: fit-content;
-	top: calc(50% - 0px);
-	left: 34%;
+	top: calc(60% - 0px);
+	left: 50.5%;
 	transform: translate(-60%, -81%);
 	align-items: baseline;
 	* {
@@ -400,7 +400,7 @@ color: #919191;
     color: #FFFFFF;
     /* top: calc(50% - 0px); */
     /* left: 80%; */
-    transform: translate(92%, 830%);
+    transform: translate(95%, 948%);
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25)
 }
 
@@ -408,8 +408,8 @@ color: #919191;
   position: absolute;
 	width: 19px;
 	height: 110px;
-	top: 25%;
-    left: 77.5%;
+	top: 32%;
+  left: 83%;
 }
 
 .mask_fuel {
@@ -436,6 +436,77 @@ color: #919191;
 	background-repeat: no-repeat;
 	position: absolute;
 	width: 19px;
+	top: 0;
+	z-index: 1;
+}
+
+// speed
+
+
+// .current-speed {
+// 	display: flex;
+// 	position: absolute;
+// 	width: fit-content;
+// 	top: calc(60% - 0px);
+// 	left: 50.5%;
+// 	transform: translate(-60%, -81%);
+// 	align-items: baseline;
+// 	* {
+// 		display: flex;
+// 		font-weight: 800; font-size: 72px; line-height: 86px;
+// 	}
+
+// 	.opacity {
+// 		opacity: .36;
+// 	}
+
+// }
+
+.current_speed_count {
+	font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    /* top: calc(50% - 0px); */
+    /* left: 80%; */
+    transform: translate(95%, 948%);
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25)
+}
+
+.current-speed_wrapper {
+  position: absolute;
+  width: 353px;
+  height: 143px;
+  top: 17%;
+  left: 0%;
+}
+
+// .mask_fuel {
+// 	object-fit: cover;
+//   -webkit-mask-size: cover;
+	
+// 	width: 100%;
+// 	height: 100%;
+// }
+
+.current-speed_shk {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background: url(../img/hud/speed_2.png);
+	background-repeat: no-repeat;
+	// background: linear-gradient(0deg, #FF0000 0%, #FFB800 53.12%, #FFE39A 100%);
+}
+
+.current_speed_scale {
+	// background-image:url(../img/hud/mask_fuel.png);
+	// background: #212228;
+	background: url(../img/hud/speed_1.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	width: 19px;
+  height: 143px;
 	top: 0;
 	z-index: 1;
 }

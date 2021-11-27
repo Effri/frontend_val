@@ -66,6 +66,7 @@
 #noty_layout__bottomCenter {
   bottom: 5%;
   left: 50%;
+  margin-left: -218px;
   width: 325px;
   -webkit-transform: translate(-webkit-calc(-50% - 0.5px)) translateZ(0)
     scale(1, 1);
@@ -285,12 +286,41 @@
     position: absolute;
     top: -28px;
     left: 50%;
-    transform: translateX(-50%);
+    margin-left: -60px;
+    transform: skewX(15deg);
     font-style: normal;
     font-weight: 800;
     font-size: 18px;
     line-height: 22px;
     color: #fff;
     text-transform: uppercase;
+  }
+
+  .noty_progress_wrapper {
+    position: absolute;
+    width: 334px;
+    background: #ffffff;
+    left: 50%;
+    bottom: -1px;
+    transform: translateX(-50%);
+
+    .noty_progress {
+      position: relative;
+      width: 0;
+      height: 4px;
+      border-radius: 10px;
+      background: #ffb800;
+      border-radius: 1px;
+    }
+  }
+
+  #noty_progress_bar {
+    animation: progress_fill 10s forwards;
+  }
+
+  @keyframes progress_fill {
+    100% {
+      width: 100%;
+    }
   }
 }
