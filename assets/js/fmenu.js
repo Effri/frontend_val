@@ -1,9 +1,9 @@
 ﻿var fmenu = new Vue({
     el: ".fmenu",
     data: {
-        active: true,
+        active: false,
         submenu: false,
-        members: ['1raf5', '12td4','1raf5', '12td4','1raf5', ],
+        members: ['1raf5', '12td4','1raf5', '12td4','1raf5', '1raf5', '12td4','1raf5', '12td4','1raf5', '1raf5', '12td4','1raf5', '12td4','1raf5', ],
         playerssort: 0,
         sortrevert: 0,
         showonly: 2,

@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Spawn Select</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/respawn.css" />
+
+	<script>
+		window.onload = init;
+	</script>
+	<script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/js/respawn.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$("body").css("display", "none");
+
+			$("body").fadeIn(1000);
+
+		});
+	</script>
+</head>
+
+<body>
+	<div id="spawn-select">
+		<div class="logo">
+			<img src="./assets/img/respawn/logo.svg" alt="">
+		</div>
+		<div class="title">ВЫБОР МЕСТА ПОЯВЛЕНИЯ</div>
+		<div class="spawn_wrapper">
+			<div class="spawn_block_wrapper home_wrapper" id="home-spawn">
+				<div  class="flex-item select-block home">
+					<div class="title-block">
+						<div class="title-text">
+							<span class="bold">Ваш дом</span>
+							<span class="desc-text"></span>
+						</div>
+					</div>
+
+				</div>
+				<div class="button-block">
+					<button onclick="spawn(2)" type="button" class="button">Выбрать</button>
+				</div>
+			</div>
+			<div class="spawn_block_wrapper last_wrapper" id="last-spawn">
+				<div  class="flex-item select-block last">
+					<div class="title-block">
+						<div class="title-text">
+							<span class="bold">Место выхода</span>
+						</div>
+					</div>
+
+				</div>
+				<div class="button-block">
+					<button onclick="spawn(0)" type="button" class="button">Выбрать</button>
+				</div>
+			</div>
+			<div class="spawn_block_wrapper org_wrapper" id="org-spawn">
+				<div  class="flex-item select-block org">
+					<div class="title-block">
+						<div class="title-text">
+							<span class="bold">Фракция</span>
+							<span class="desc-text"></span>
+						</div>
+					</div>
+
+				</div>
+				<div class="button-block">
+					<button onclick="spawn(1)" type="button" class="button">Выбрать</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

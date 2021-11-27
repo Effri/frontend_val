@@ -1,0 +1,780 @@
+@charset "UTF-8";
+body {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+  margin: 0;
+  font-family: "Akrobat";
+  background-color: #878787;
+}
+
+p {
+  margin: 0;
+}
+
+#effect {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#safezone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.58s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.inGameHud {
+  /* position: absolute; */
+  /* margin: 0 auto; */
+  /* line-height: normal; */
+  color: #fff;
+  /* width: 100%; */
+  /* height: 100%; */
+  -webkit-animation-name: opacity, slide;
+  animation-name: opacity, slide;
+  -webkit-animation-duration: 0.5s, 0.5s;
+  animation-duration: 0.5s, 0.5s;
+  -webkit-animation-timing-function: ease, ease;
+  animation-timing-function: ease, ease;
+}
+
+.inGameHud .header_hud {
+  position: absolute;
+  right: 31px;
+  top: 24px;
+}
+
+p {
+  margin: 0;
+}
+
+.id_info,
+.online_info,
+.brace_info,
+.money_info,
+.chips_info,
+.bonus_info,
+.chips_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.user_wrapper {
+  display: flex;
+  padding: 18px 13px;
+  background: linear-gradient(269.9deg, rgba(0, 0, 0, 0.32) 0.17%, rgba(0, 0, 0, 0) 99.86%);
+  border-radius: 2px;
+}
+
+.user_wrapper .user_info {
+  display: flex;
+}
+
+.user_wrapper .online_info {
+  margin-right: 21px;
+  margin-left: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user_wrapper .online_info span {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 0.315em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.user_wrapper .online_block {
+  display: flex;
+  align-items: center;
+}
+
+.user_wrapper .online_block p {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffb800;
+}
+
+.user_wrapper .online_block img {
+  margin-right: 4px;
+}
+
+.user_wrapper .logo_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user_wrapper .logo_wrapper p {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  color: #d2d2d2;
+}
+
+.ammo_wrapper {
+  margin-top: 6px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ammo_wrapper .ammo_block {
+  display: flex;
+  padding: 4px 9px 5px 33px;
+  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.32) 1.99%, rgba(0, 0, 0, 0) 98.01%);
+  border-radius: 2px;
+  align-items: flex-end;
+}
+
+.ammo_wrapper .ammo_block .orange {
+  margin: 0 3px;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  text-align: right;
+  color: #ffb800;
+}
+
+.brace_info {
+  padding-left: 22px;
+}
+
+.money_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-left: 60px;
+  margin-right: 0;
+  align-content: flex-start;
+  align-items: flex-end;
+}
+
+.money_wrapper .money_info:nth-child(1) {
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 43px;
+}
+
+.money_wrapper .money_info:nth-child(2) {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.money_wrapper .money_info .orange {
+  margin-right: 5px;
+  color: #ffb800;
+}
+
+.money_wrapper .money_info img {
+  margin-left: 2px;
+}
+
+.money_info {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 100%;
+  color: #ffffff;
+  /* width: 160px; */
+  /* display: flex; */
+  /* padding-right: 21px; */
+}
+
+.chips_wrapper {
+  justify-content: center;
+  display: flex;
+  /* padding-right: 44px; */
+  align-items: center;
+  margin-top: 15px;
+}
+
+.chips_info {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.chips_wrapper img {
+  margin-left: 7px;
+}
+
+/* Спидометр */
+.inGameHud .speedometer_hud {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+}
+
+.inGameHud .speedometer_hud .speedcount {
+  position: relative;
+  color: #ffffff52;
+  display: flex;
+  justify-content: center;
+  width: 150%;
+  margin-left: -27px;
+  margin-bottom: 2%;
+}
+
+.inGameHud .speedometer_hud .speedcount .count {
+  font-size: 3em;
+  font-weight: 300;
+  color: white;
+  transition: all 0.73s;
+}
+
+.inGameHud .speedometer_hud .speedcount p {
+  position: absolute;
+  margin-top: -13px;
+  margin-left: 7px;
+  letter-spacing: 0.1em;
+  transition: all 0.33s;
+}
+
+.inGameHud .speedometer_hud .fuel {
+  margin-left: 57%;
+  margin-bottom: 11%;
+}
+
+.inGameHud .speedometer_hud .fuel a {
+  position: absolute;
+  margin-top: 4px;
+}
+
+.inGameHud .speedometer_hud .fuel .fuel_ico {
+  width: 28px;
+  opacity: 0.4;
+  margin-left: 50px;
+}
+
+.inGameHud .speedometer_hud .help_car {
+  display: flex;
+  right: 3%;
+}
+
+.inGameHud .speedometer_hud .help_car .helps {
+  display: flex;
+  margin-left: 13px;
+}
+
+.inGameHud .speedometer_hud .help_car .icon_help {
+  padding-right: 4px;
+  width: 27px;
+  height: 25px;
+  transition: all 0.33s;
+}
+
+.inGameHud .speedometer_hud .help_car p {
+  background: #6f6f6f78;
+  line-height: 1.7em;
+  width: 28px;
+  margin-left: 11px;
+  font-weight: 100;
+  font-size: 16px;
+  height: 25px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+/* Новый спидометр */
+.info_wrapper_text p {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.info_belt {
+  position: absolute;
+  top: calc(58% - 0px);
+  left: 5%;
+  transform: translate(-62%, -50%);
+}
+
+.info_door {
+  position: absolute;
+  top: calc(71% - 0px);
+  left: 8%;
+  transform: translate(-60%, -50%);
+}
+
+.info_engine {
+  position: absolute;
+  top: calc(84% - 0px);
+  left: 12%;
+  transform: translate(-57%, -55%);
+}
+
+.current-speed {
+  display: flex;
+  position: absolute;
+  width: fit-content;
+  top: calc(50% - 0px);
+  left: 34%;
+  transform: translate(-60%, -81%);
+  align-items: baseline;
+}
+
+.current-speed * {
+  display: flex;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 86px;
+}
+
+.current-speed .opacity {
+  opacity: .36;
+}
+
+.current-speed .big_km {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 29px;
+  color: #919191;
+}
+
+.current_fuel_count {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  /* top: calc(50% - 0px); */
+  /* left: 80%; */
+  transform: translate(92%, 830%);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.current-fuel_wrapper {
+  position: absolute;
+  width: 19px;
+  height: 110px;
+  top: 25%;
+  left: 77.5%;
+}
+
+.mask_fuel {
+  object-fit: cover;
+  -webkit-mask-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.current-fuel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: url(../img/hud/full.png);
+  background-repeat: no-repeat;
+}
+
+.current_scale {
+  background: url(../img/hud/full_1.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 19px;
+  top: 0;
+  z-index: 1;
+}
+
+/* Блок с улицами */
+.inGameHud .steet_block {
+  position: absolute;
+  bottom: 1%;
+  /*left: 16%;*/
+}
+
+.inGameHud .steet_block .info_table {
+  margin-bottom: 4px;
+}
+
+.inGameHud .steet_block .info_table .info {
+  display: flex;
+  align-items: center;
+  padding: 12px 5px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 1.99%, rgba(0, 0, 0, 0) 98.01%);
+  width: 137px;
+  border-radius: 2px;
+}
+
+.inGameHud .steet_block .info_table .info span {
+  margin-left: 5px;
+}
+
+.hud .steet_block * {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+.hud .street_clock {
+  background-image: url("../hud/lines.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  padding-left: 19px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud .street_clock #current_date_time_block2 {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffb800;
+}
+
+.hud .street_clock #current_date_time_block3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+}
+
+.hud .street_wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1.5px;
+}
+
+.hud .street_wrapper img {
+  margin-right: 4px;
+}
+
+.hud .street_clock .grey {
+  color: #aeaeae;
+}
+
+.inGameHud .steet_block .crossingroad {
+  color: #ffb800;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.inGameHud .steet_block .street {
+  /* display: flex;
+    align-items: center; */
+  background-image: url("../hud/map.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  padding-left: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hud .street_map {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.steet_block .street_info {
+  display: flex;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 1.99%, rgba(0, 0, 0, 0) 98.01%);
+  border-radius: 2px;
+  padding: 8px 5px;
+}
+
+.inGameHud .steet_block .info_table {
+  display: flex;
+}
+
+.inGameHud .steet_block .info_table .icon {
+  transition: all 0.33s;
+  opacity: 0.6;
+}
+
+.inGameHud .steet_block .info_table p {
+  background: #6f6f6f75;
+  width: 30px;
+  padding: 1%;
+  line-height: 1.5em;
+  text-align: center;
+  margin-left: 13px;
+}
+
+.inGameHud .steet_block .info_table .activeP {
+  background: #ffff;
+  color: black;
+  width: 30px;
+  padding: 1%;
+  line-height: 1.5em;
+  text-align: center;
+  margin-left: 13px;
+}
+
+.green_zone_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.green_zone_wrapper .green_zone_block {
+  display: flex;
+  width: 194px;
+  padding: 4px 9px;
+  background: linear-gradient(-90deg, rgba(143, 255, 0, 0.48) 1.99%, rgba(143, 255, 0, 0) 78.5%);
+  border-radius: 2px;
+  justify-content: flex-end;
+}
+
+.green_zone_wrapper .green_zone_block img {
+  margin-left: 5px;
+}
+
+/* Блок со звездами */
+.inGameHud .stars {
+  position: relative;
+  /* top: 145px; */
+  /* right: 59px; */
+  display: flex;
+  padding-right: 20px;
+}
+
+.inGameHud .stars .ico {
+  /* width: 25px; */
+  /* height: 25px; */
+  /* opacity: 0.4; */
+  width: 31px;
+  height: 31px;
+  background: #c4c4c4;
+  opacity: 0.25;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  margin-left: 3px;
+}
+
+.inGameHud .stars .ico.active {
+  opacity: 1;
+  background: linear-gradient(180deg, #ffee55 -7.07%, #f4cc40 96.29%);
+}
+
+/* Блок с едой */
+.inGameHud .info_table .eatings {
+  display: flex;
+  position: absolute;
+  margin-top: -34px;
+  margin-left: 7px;
+}
+
+.hud .eatings {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hud .eat_border,
+.hud .water_border {
+  box-sizing: border-box;
+  display: flex;
+  /* border-color: rgb(0,255,136); */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid;
+  margin-bottom: 15px;
+}
+
+/* Микрофон */
+/* Система бонусов */
+.bonus {
+  position: absolute;
+  top: 250px;
+  right: 5px;
+  z-index: 999;
+  display: none;
+}
+
+.bonus-block {
+  display: flex;
+  flex-wrap: wrap;
+  width: 255px;
+  height: auto;
+  border-radius: 10px;
+  /* background-color: #18191D; */
+}
+
+.bonus-block header {
+  flex: 40%;
+  width: 100%;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  /* border-radius: 10px; */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  justify-content: space-between;
+}
+
+.bonus-block header .fa-times {
+  color: #ffffff;
+}
+
+.bonus-block .main {
+  flex: 60%;
+  width: 100%;
+  padding: 10px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.bonus-block .main p {
+  padding: 10px 30px;
+  text-align: center;
+  background-color: #c4c4c457;
+  /* box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 1); */
+}
+
+.bonus_info {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 100%;
+  color: #878787;
+}
+
+.bonus_info p {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: bold;
+  /* font-size: 13px; */
+  line-height: 100%;
+  writing-mode: vertical-rl;
+  /* font-style: normal; */
+  /* font-weight: bold; */
+  font-size: 17px;
+  /* line-height: 100%; */
+  text-transform: uppercase;
+  color: #fff;
+  /* letter-spacing: 0.065em; */
+}
+
+.bonus span {
+  display: block;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+/* Хоткеи */
+.hotkey {
+  position: absolute;
+  top: 50%;
+  right: 27px;
+  transform: translateY(-50%);
+}
+
+.hotkey_wrapper {
+  display: flex;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 100%;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.hotkey_wrapper .hotkey_info {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.btn_hotkey {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 100%;
+  width: 27px;
+  height: 27px;
+  background: rgba(46, 46, 46, 0.71);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.chat .input_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.chat .text {
+  display: flex;
+}
+
+.chat .text .all {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  width: 67px;
+  height: 39px;
+  background: rgba(46, 46, 46, 0.71);
+  margin-right: 3px;
+  margin-top: 4px;
+  color: #c6c6c6;
+}
+
+.chat .text .all.active {
+  color: #fff;
+  background: #ffb800;
+  transition: 0.3s all;
+}
+
+.chat .send {
+  position: absolute;
+  right: 15px;
+}
+
+.chat ul#chat_messages {
+  overflow: scroll;
+  padding: 20px 32px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 3px;
+}
+
+.chat ul li {
+  list-style: none;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+}

@@ -1,0 +1,652 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1.0" name="viewport">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/chat.css">
+    <link rel="stylesheet" href="./assets/css/hud_new.css">
+    <link rel="stylesheet" href="./assets/fonts/notify.css">
+    <link rel="stylesheet" href="./assets/css/noty.css" />
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link rel="stylesheet" href="./assets/fonts/akrobat.css">
+    <script src="./assets/js/vue.js"></script>
+</head>
+
+<body>
+
+    <script>
+        Vue.filter('formatThousands', (x) => {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        })
+    </script>
+
+    <div id="safezone">
+        <div class="inGameHud hud" v-if="show">
+
+            <div class="header_hud">
+
+                <div class="user_wrapper">
+                    <div class="user_info">
+                        <div class="street_clock">
+                            <div class="street_wrapper">
+                                <img src="./assets/img/hud/time.png" alt="">
+                                <div class="time_info" id="current_date_time_block2"></div>
+                            </div>
+                            <div class="time_info grey" id="current_date_time_block3"></div>
+                        </div>
+                        <div class="online_info">
+                            <div class="online_block">
+                                <img src="./assets/img/hud/online.png" alt="user">
+                                <p>{{online}}</p>
+                            </div>
+                            <span>ОНЛАЙН</span>
+                        </div>
+                        <!-- <div class="id_info">
+                            <img src="hud/hash.png" alt="hash">
+                            
+                        </div> -->
+                        <!-- <div class="brace_info">
+                            <p>({{personId}})</p>
+                        </div> -->
+                    </div>
+                    <div class="logo_wrapper">
+                        <img src="./assets/img/hud/logo.png" alt="logo">
+                        <p>ID: {{playerId}}</p>
+                    </div>
+
+                </div>
+
+                <!-- green zone -->
+                <div class="green_zone_wrapper" v-if="inSafeZone = !inSafeZone">
+                    <div class="green_zone_block">
+                        <div>Зеленая зона</div>
+                        <img src="./assets/img/hud/zone.svg" alt="">
+                    </div>
+                </div>
+
+                <!-- ammo -->
+                <div class="ammo_wrapper">
+                    <div class="ammo_block">
+                        Кол-во патронов: <div class="orange">{{ ammo }}</div> шт.
+                    </div>
+                </div>
+
+                <div class="money_wrapper">
+
+                    <div class="money_info">
+                        <p>
+                            <p class="orange">$</p> {{money | formatThousands}}
+                        </p>
+                    </div>
+                    <!-- Баланс на карте -->
+                    <div class="money_info">
+                        <p>
+                            <p class="orange">$</p> {{bank | formatThousands}}
+                        </p>
+                        <img src="./assets/img/hud/bank.png">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bonus">
+                <div class="bonus_active" v-if="lastbonus == ''">
+                    <div class="bonus-bar bonus_info">
+                        <img src="hud/bonus_2.png" alt="">
+                        <!-- <img src="hud/bonus.png" @click="showbonus()" alt=""> -->
+                        <p>Бонус</p>
+                        <!-- <i @click="showbonus()" class="fa fa-gift" aria-hidden="true"></i> -->
+
+                    </div>
+                    <!-- <span>{{lastbonus}}</span> -->
+                </div>
+                <div class="bonus_inactive" v-else>
+                    <div class="bonus-bar bonus_info">
+
+                        <img src="hud/bonus.png" alt="">
+                        <p>Бонус</p>
+                    </div>
+                    <span>{{lastbonus}}</span>
+                </div>
+                <!-- <div class="bonus-block" v-else>
+                    <header>
+                        <span>Вы получите бонус через:</span>
+                        <i @click="showbonus()" aria-hidden="true" class="fa fa-times"></i>
+                    </header>
+                    <div class="main">
+                        <p>
+                            {{lastbonus}}
+                        </p>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- <div class="eatings">
+
+                <div class="eat_border" v-if="eat < 20" style="border-color: #f2524c;
+                filter: drop-shadow(0px 0px 25px #f2524c);
+                transition: 3s;">
+                    <img src="hud/eat.png" class="icohud">
+                </div>
+                <div class="eat_border" v-else-if="eat < 50" style="border-color: #F2C94C;
+                filter: drop-shadow(0px 0px 25px #F2C94C);
+                transition: 3s;">
+                    <img src="hud/eat.png" class="icohud">
+                </div>
+                <div class="eat_border" v-else style="border: 5px solid #2F80ED;
+                box-sizing: border-box;
+                filter: drop-shadow(0px 0px 4px #2F80ED);
+                transition: 3s;">
+                    <img src="hud/eat.png" class="icohud">
+                </div>
+
+                <div class="water">
+
+                    <div class="water_border" v-if="water < 20" style="border-color: #f2524c;
+                    filter: drop-shadow(0px 0px 25px #f2524c);
+                    transition: 3s;">
+                        <img src="hud/water.png" class="waterhud">
+                    </div>
+                    <div class="water_border" v-else-if="water < 50" style="border-color: #F2C94C;
+                    filter: drop-shadow(0px 0px 25px #F2C94C);
+                    transition: 3s;">
+                        <img src="hud/water.png" class="waterhud">
+                    </div>
+                    <div class="water_border" v-else style="border: 5px solid #2F80ED;
+                    box-sizing: border-box;
+                    filter: drop-shadow(0px 0px 4px #2F80ED);
+                    transition: 3s;">
+                        <img src="hud/water.png" class="waterhud">
+                    </div>
+
+                </div>
+            </div> -->
+
+            <div class="hotkey" v-if="!hotkeyblock">
+                <div class="hotkey_wrapper">
+
+                    <div class="hotkey_info">Хоткей</div>
+                    <div class="btn_hotkey">R</div>
+                </div>
+                <div class="hotkey_wrapper">
+                    <div class="hotkey_info">Хоткей</div>
+                    <div class="btn_hotkey">E</div>
+                </div>
+                <div class="hotkey_wrapper">
+
+                    <div class="hotkey_info">Хоткей</div>
+                    <div class="btn_hotkey">`</div>
+                </div>
+                <div class="hotkey_wrapper">
+
+                    <div class="hotkey_info">Хоткей</div>
+                    <div class="btn_hotkey">Y</div>
+                </div>
+                <div class="hotkey_wrapper">
+
+                    <div class="hotkey_info">Хоткей</div>
+                    <div class="btn_hotkey">B</div>
+                </div>
+                <div class="hotkey_wrapper">
+
+                    <div class="hotkey_info">Хоткей</div>
+                    <div class="btn_hotkey">N</div>
+                </div>
+            </div>
+
+            <div class="speedometer_hud" :style="{ opacity: inVeh ? 1 : 0 }">
+                <!-- <div class="speedcount" v-if="speed < 100"><a class="count">{{speed}}</a>
+                    <p>км/ч</p>
+                </div>
+                <div class="speedcount" v-else-if="speed < 200"><a class="count" style="color:#eda123">{{speed}}</a>
+                    <p>км/ч</p>
+                </div>
+                <div class="speedcount" v-else="speed < 300"><a class="count" style="color:red">{{speed}}</a>
+                    <p>км/ч</p>
+                </div>
+                <div class="fuel"><a>{{fuel}} л.</a><img src="hud/fuel.svg" style="opacity:0.2" class="fuel_ico"></div>
+
+                <div class="help_car">
+                    <div v-if="engine" class="helps"><img src="hud/engine.png" class="icon_help">
+                        <p>B</p>
+                    </div>
+                    <div v-else class="helps"><img src="hud/engine.png" style="opacity:0.5;transition: all .33s;"
+                            class="icon_help">
+                        <p>B</p>
+                    </div>
+                    <div v-if="belt" class="helps"><img src="hud/belt.png" class="icon_help">
+                        <p>J</p>
+                    </div>
+                    <div v-else class="helps"><img src="hud/belt.png" style="opacity:0.5;transition: all .33s;"
+                            class="icon_help">
+                        <p>J</p>
+                    </div>
+                    <div v-if="doors" class="helps"><img src="hud/door.svg" class="icon_help">
+                        <p>L</p>
+                    </div>
+                    <div v-else class="helps"><img src="hud/door.svg" style="opacity:0.5;transition: all .33s;"
+                            class="icon_help">
+                        <p>L</p>
+                    </div>
+                </div> -->
+                <div class="current-speed">
+
+                    <!-- <img src="images/player_hud/speed.png" alt=""> -->
+
+                    <div class="value" v-if="speed < 10">
+                        <div class="opacity">00</div>{{speed}}
+                    </div>
+                    <div class="value" v-else-if="speed < 100">
+                        <div class="opacity">0</div>{{speed}}
+                    </div>
+                    <div class="value" v-else>{{speed}}</div>
+                    <div class="big_km">км/ч</div>
+                </div>
+
+                <div class="current-fuel_wrapper">
+                    <!-- <div class="mask_fuel"></div> -->
+                    <div class="current_scale" :style="{height: maxfuel - fuel + '%'}"></div>
+                    <div class="current-fuel"></div>
+                </div>
+                <div class="current_fuel_count">
+                    {{fuel}} л.
+                </div>
+
+                <!-- <div class="info_wrapper_text">
+                    <div class="info_belt" v-if="belt">
+                        <p>Пристегн.</p>
+                    </div>
+
+                    <div class="info_belt" v-else>
+                        <p>Отстегн.</p>
+                    </div>
+
+                    <div class="info_door" v-if="doors">
+                        <p>Откр.</p>
+                    </div>
+
+                    <div class="info_door" v-else>
+                        <p>Закр.</p>
+                    </div>
+
+                    <div class="info_engine" v-if="engine">
+                        <p>Вкл.</p>
+                    </div>
+
+                    <div class="info_engine" v-else>
+                        <p>Выкл.</p>
+                    </div>
+                </div> -->
+
+                <svg width="267" height="138" viewBox="0 0 267 138" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g xmlns="http://www.w3.org/2000/svg" filter="url(#filter0_d_10_165)" v-if="engine">
+                        <g filter="url(#filter1_d_10_165)">
+                            <path
+                                d="M183.671 103.872C182.74 103.872 181.98 104.629 181.975 105.559L181.967 107.246H180.843L180.853 105.133C180.856 104.541 180.619 103.961 180.202 103.543L178.947 102.282C178.531 101.863 177.952 101.623 177.36 101.623H174.123L174.134 99.3737H175.82C176.751 99.3737 177.511 98.6171 177.516 97.6869C177.52 96.7567 176.767 96 175.837 96H169.089C168.159 96 167.399 96.7567 167.394 97.6869C167.39 98.6171 168.143 99.3737 169.073 99.3737H170.76L170.749 101.623H168.636C168.044 101.623 167.463 101.863 167.042 102.282L165.444 103.872H164.552C163.622 103.872 162.862 104.629 162.857 105.559L162.849 107.246H161.725L161.733 105.559C161.737 104.629 160.984 103.872 160.054 103.872C159.124 103.872 158.364 104.629 158.359 105.559L158.326 112.306C158.322 113.237 159.075 113.993 160.005 113.993C160.935 113.993 161.695 113.237 161.7 112.306L161.708 110.62H162.833L162.824 112.306C162.82 113.237 163.573 113.993 164.503 113.993H165.395L166.977 115.584C167.394 116.002 167.972 116.242 168.564 116.242H176.164C176.756 116.242 177.337 116.002 177.758 115.584L180.155 113.198C180.576 112.78 180.818 112.2 180.821 111.608L180.826 110.62H181.951L181.942 112.306C181.938 113.237 182.691 113.993 183.621 113.993C184.551 113.993 185.312 113.237 185.316 112.306L185.349 105.559C185.354 104.629 184.601 103.872 183.671 103.872Z"
+                                fill="#FF5252" />
+                        </g>
+                    </g>
+
+                    <g xmlns="http://www.w3.org/2000/svg" filter="" v-else>
+                        <g filter="">
+                            <path
+                                d="M183.671 103.872C182.74 103.872 181.98 104.629 181.975 105.559L181.967 107.246H180.843L180.853 105.133C180.856 104.541 180.619 103.961 180.202 103.543L178.947 102.282C178.531 101.863 177.952 101.623 177.36 101.623H174.123L174.134 99.3737H175.82C176.751 99.3737 177.511 98.6171 177.516 97.6869C177.52 96.7567 176.767 96 175.837 96H169.089C168.159 96 167.399 96.7567 167.394 97.6869C167.39 98.6171 168.143 99.3737 169.073 99.3737H170.76L170.749 101.623H168.636C168.044 101.623 167.463 101.863 167.042 102.282L165.444 103.872H164.552C163.622 103.872 162.862 104.629 162.857 105.559L162.849 107.246H161.725L161.733 105.559C161.737 104.629 160.984 103.872 160.054 103.872C159.124 103.872 158.364 104.629 158.359 105.559L158.326 112.306C158.322 113.237 159.075 113.993 160.005 113.993C160.935 113.993 161.695 113.237 161.7 112.306L161.708 110.62H162.833L162.824 112.306C162.82 113.237 163.573 113.993 164.503 113.993H165.395L166.977 115.584C167.394 116.002 167.972 116.242 168.564 116.242H176.164C176.756 116.242 177.337 116.002 177.758 115.584L180.155 113.198C180.576 112.78 180.818 112.2 180.821 111.608L180.826 110.62H181.951L181.942 112.306C181.938 113.237 182.691 113.993 183.621 113.993C184.551 113.993 185.312 113.237 185.316 112.306L185.349 105.559C185.354 104.629 184.601 103.872 183.671 103.872Z"
+                                fill="white" />
+                        </g>
+                    </g>
+                    <g clip-path="url(#clip0_10_165)" filter="url(#filter2_d_10_165)" v-if="doors">
+                        <path
+                            d="M117.041 111.179C117.038 111.775 117.52 112.26 118.116 112.26C118.712 112.26 119.199 111.775 119.202 111.179H117.041Z"
+                            fill="#8FFF00" />
+                        <path
+                            d="M131.796 105.581L124.862 98.6136C124.557 98.3075 124.151 98.1386 123.718 98.1386H115.483C114.589 98.1386 113.859 98.8658 113.854 99.7597L113.78 114.962C113.776 115.856 114.499 116.583 115.393 116.583H124.075C124.28 116.583 124.467 116.467 124.56 116.284C125.813 113.802 128.351 112.26 131.127 112.26H131.697C131.996 112.26 132.239 112.018 132.24 111.72L132.265 106.728C132.267 106.295 132.1 105.887 131.796 105.581ZM120.283 111.179C120.277 112.371 119.303 113.341 118.111 113.341C116.919 113.341 115.954 112.371 115.96 111.179L115.963 110.639C115.964 110.34 116.207 110.099 116.506 110.099H119.748C120.047 110.099 120.287 110.34 120.286 110.639L120.283 111.179ZM129.557 107.901H116.516C116.218 107.901 115.977 107.659 115.979 107.361L116.011 100.84C116.012 100.542 116.255 100.3 116.554 100.3H123.259C123.403 100.3 123.54 100.357 123.641 100.458L129.945 106.793C130.233 107.083 130.156 107.901 129.557 107.901Z"
+                            fill="#8FFF00" />
+                        <path d="M123.03 101.381H117.089L117.062 106.82H128.443L123.03 101.381Z" fill="#8FFF00" />
+                    </g>
+                    <g clip-path="url(#clip0_10_165)" filter="url(#filter2_d_10_165)" v-else>
+                        <path
+                            d="M117.041 111.179C117.038 111.775 117.52 112.26 118.116 112.26C118.712 112.26 119.199 111.775 119.202 111.179H117.041Z"
+                            fill="white" />
+                        <path
+                            d="M131.796 105.581L124.862 98.6136C124.557 98.3075 124.151 98.1386 123.718 98.1386H115.483C114.589 98.1386 113.859 98.8658 113.854 99.7597L113.78 114.962C113.776 115.856 114.499 116.583 115.393 116.583H124.075C124.28 116.583 124.467 116.467 124.56 116.284C125.813 113.802 128.351 112.26 131.127 112.26H131.697C131.996 112.26 132.239 112.018 132.24 111.72L132.265 106.728C132.267 106.295 132.1 105.887 131.796 105.581ZM120.283 111.179C120.277 112.371 119.303 113.341 118.111 113.341C116.919 113.341 115.954 112.371 115.96 111.179L115.963 110.639C115.964 110.34 116.207 110.099 116.506 110.099H119.748C120.047 110.099 120.287 110.34 120.286 110.639L120.283 111.179ZM129.557 107.901H116.516C116.218 107.901 115.977 107.659 115.979 107.361L116.011 100.84C116.012 100.542 116.255 100.3 116.554 100.3H123.259C123.403 100.3 123.54 100.357 123.641 100.458L129.945 106.793C130.233 107.083 130.156 107.901 129.557 107.901Z"
+                            fill="white" />
+                        <path d="M123.03 101.381H117.089L117.062 106.82H128.443L123.03 101.381Z" fill="white" />
+                    </g>
+
+
+                    <g filter="url(#filter3_d_10_165)" v-if="">
+                        <path
+                            d="M76.6004 98.1386C71.6351 98.1386 71.6351 115.96 76.6004 115.96C81.5657 115.96 87.7723 112.619 87.7723 107.05C87.7723 101.48 81.5657 98.1386 76.6004 98.1386ZM76.7245 113.485C76.228 112.99 75.3591 110.762 75.3591 107.05C75.3591 103.337 76.228 101.109 76.7245 100.614C80.3244 100.738 85.2896 102.965 85.2896 107.05C85.2896 111.134 80.2002 113.361 76.7245 113.485ZM70.3938 105.193C70.3938 105.812 70.2697 106.431 70.2697 107.05V107.792L63.4424 109.525L62.8218 107.173L70.3938 105.193ZM62.9459 100.861L72.1317 98.5099C71.8834 98.8812 71.6351 99.3762 71.511 99.995C71.3869 100.366 71.2627 100.861 71.1386 101.356L63.5666 103.213L62.9459 100.861ZM70.6421 111.381C70.7662 112.248 71.0145 113.114 71.2627 113.733L63.4424 115.713L62.8218 113.361L70.6421 111.381V111.381Z"
+                            fill="white" />
+                    </g>
+
+                    <g filter="url(#filter4_d_10_165)" v-if="belt">
+                        <g filter="url(#filter5_d_10_165)">
+                            <path
+                                d="M27.8592 96.7129C28.4075 96.7129 28.9334 96.9307 29.3211 97.3184C29.7089 97.7062 29.9267 98.232 29.9267 98.7804C29.9267 99.9278 29.0067 100.848 27.8592 100.848C27.3109 100.848 26.785 100.63 26.3973 100.242C26.0095 99.8546 25.7917 99.3287 25.7917 98.7804C25.7917 98.232 26.0095 97.7062 26.3973 97.3184C26.785 96.9307 27.3109 96.7129 27.8592 96.7129ZM28.2624 109.935C29.7308 109.929 31.1981 110.015 32.6558 110.193C32.7178 107.381 32.4697 104.9 31.9942 103.949C31.8598 103.67 31.6737 103.432 31.4773 103.225L23.135 110.379C24.5409 110.152 26.3086 109.935 28.2624 109.935V109.935ZM23.166 112.219C23.3004 114.018 23.5692 115.837 24.0033 117.388H26.1432C25.8434 116.478 25.6263 115.413 25.4609 114.287C25.4609 114.287 27.8592 113.832 30.2575 114.287C30.0921 115.413 29.875 116.478 29.5752 117.388H31.7151C32.1699 115.786 32.4387 113.883 32.5731 112.002C31.1427 111.829 29.7032 111.743 28.2624 111.744C26.2672 111.744 24.5305 111.961 23.166 112.219V112.219ZM27.8592 101.882C27.8592 101.882 24.758 101.882 23.7242 103.949C23.3727 104.652 23.1453 106.172 23.073 108.043L29.844 102.233C28.8206 101.882 27.8592 101.882 27.8592 101.882ZM34.6509 100.507L33.4724 99.1319L29.844 102.243C30.4126 102.44 31.0121 102.75 31.4773 103.225L34.6509 100.507V100.507ZM36.8218 111.01C36.7287 110.979 35.2402 110.493 32.6558 110.193C32.6454 110.782 32.6144 111.392 32.5731 112.002C34.899 112.291 36.2325 112.736 36.2532 112.736L36.8218 111.01V111.01ZM23.073 108.043L19 111.537L19.92 113.067C19.9407 113.056 21.1399 112.591 23.166 112.219C23.0523 110.762 23.0213 109.325 23.073 108.043Z"
+                                fill="#8FFF00" />
+                        </g>
+                    </g>
+
+                    <g filter="" v-else>
+                        <g filter="">
+                            <path
+                                d="M27.8592 96.7129C28.4075 96.7129 28.9334 96.9307 29.3211 97.3184C29.7089 97.7062 29.9267 98.232 29.9267 98.7804C29.9267 99.9278 29.0067 100.848 27.8592 100.848C27.3109 100.848 26.785 100.63 26.3973 100.242C26.0095 99.8546 25.7917 99.3287 25.7917 98.7804C25.7917 98.232 26.0095 97.7062 26.3973 97.3184C26.785 96.9307 27.3109 96.7129 27.8592 96.7129ZM28.2624 109.935C29.7308 109.929 31.1981 110.015 32.6558 110.193C32.7178 107.381 32.4697 104.9 31.9942 103.949C31.8598 103.67 31.6737 103.432 31.4773 103.225L23.135 110.379C24.5409 110.152 26.3086 109.935 28.2624 109.935V109.935ZM23.166 112.219C23.3004 114.018 23.5692 115.837 24.0033 117.388H26.1432C25.8434 116.478 25.6263 115.413 25.4609 114.287C25.4609 114.287 27.8592 113.832 30.2575 114.287C30.0921 115.413 29.875 116.478 29.5752 117.388H31.7151C32.1699 115.786 32.4387 113.883 32.5731 112.002C31.1427 111.829 29.7032 111.743 28.2624 111.744C26.2672 111.744 24.5305 111.961 23.166 112.219V112.219ZM27.8592 101.882C27.8592 101.882 24.758 101.882 23.7242 103.949C23.3727 104.652 23.1453 106.172 23.073 108.043L29.844 102.233C28.8206 101.882 27.8592 101.882 27.8592 101.882ZM34.6509 100.507L33.4724 99.1319L29.844 102.243C30.4126 102.44 31.0121 102.75 31.4773 103.225L34.6509 100.507V100.507ZM36.8218 111.01C36.7287 110.979 35.2402 110.493 32.6558 110.193C32.6454 110.782 32.6144 111.392 32.5731 112.002C34.899 112.291 36.2325 112.736 36.2532 112.736L36.8218 111.01V111.01ZM23.073 108.043L19 111.537L19.92 113.067C19.9407 113.056 21.1399 112.591 23.166 112.219C23.0523 110.762 23.0213 109.325 23.073 108.043Z"
+                                fill="white" />
+                        </g>
+                    </g>
+
+                    <path d="M2 102L2 99C2 91.268 8.26801 85 16 85L56.5 85" stroke="white" stroke-width="4" />
+                    <path d="M2 114L2 117C2 124.732 8.26801 131 16 131L108 131" stroke="white" stroke-width="4" />
+                    <path d="M199 83L199 117C199 124.732 192.732 131 185 131L122 131" stroke="white" stroke-width="4" />
+
+                    <g filter="url(#filter6_d_10_165)">
+                        <path
+                            d="M240.939 118.574L239.931 117.587C239.832 117.491 239.674 117.493 239.577 117.592C239.48 117.691 239.482 117.849 239.58 117.945L240.41 118.758L239.594 119.592C239.547 119.639 239.521 119.703 239.522 119.769L239.528 120.519C239.532 121.071 239.985 121.514 240.536 121.506L240.571 125.756C240.572 125.894 240.461 126.008 240.323 126.009C240.185 126.011 240.072 125.901 240.071 125.763L240.067 125.263C240.063 124.849 239.724 124.517 239.311 124.523L239.061 124.526L239.008 118.026C239.003 117.475 238.551 117.032 237.999 117.039L233 117.105C232.448 117.112 232.004 117.566 232.008 118.118L232.082 127.117C231.53 127.125 231.086 127.579 231.09 128.13L231.096 128.88C231.098 129.019 231.21 129.129 231.348 129.127L239.848 129.016C239.986 129.014 240.097 128.901 240.096 128.763L240.089 128.013C240.085 127.461 239.633 127.019 239.081 127.026L239.065 125.026L239.315 125.023C239.453 125.021 239.566 125.131 239.567 125.269L239.571 125.769C239.574 126.183 239.914 126.515 240.327 126.509C240.741 126.504 241.074 126.163 241.071 125.75L241.013 118.75C241.013 118.683 240.986 118.62 240.939 118.574ZM238.034 121.294C238.035 121.432 237.925 121.545 237.786 121.547L233.287 121.606C233.149 121.608 233.036 121.497 233.035 121.359L233.01 118.355C233.009 118.216 233.12 118.103 233.258 118.101L237.758 118.042C237.896 118.041 238.009 118.151 238.01 118.289L238.034 121.294Z"
+                            fill="white" />
+                    </g>
+
+                    <defs>
+                        <filter id="filter0_d_10_165" x="147.326" y="85" width="49.0232" height="42.2424"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="5.5" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix"
+                                values="0 0 0 0 1 0 0 0 0 0.321569 0 0 0 0 0.321569 0 0 0 0.65 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_165" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_165" result="shape" />
+                        </filter>
+                        <filter id="filter1_d_10_165" x="154.326" y="96" width="35.0232" height="28.2424"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_165" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_165" result="shape" />
+                        </filter>
+                        <filter id="filter2_d_10_165" x="109.772" y="98.1386" width="26.5345" height="26.4443"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_165" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_165" result="shape" />
+                        </filter>
+                        <filter id="filter3_d_10_165" x="58.8218" y="98.1386" width="32.9504" height="25.8218"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_165" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_165" result="shape" />
+                        </filter>
+                        <filter id="filter4_d_10_165" x="8" y="85.7129" width="39.8218" height="42.6749"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="5.5" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.560784 0 0 0 0 1 0 0 0 0 0 0 0 0 0.65 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_165" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_165" result="shape" />
+                        </filter>
+                        <filter id="filter5_d_10_165" x="15" y="96.7129" width="25.8218" height="28.6749"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_165" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_165" result="shape" />
+                        </filter>
+                        <filter id="filter6_d_10_165" x="227.09" y="117.039" width="17.9807" height="20.0881"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset dy="4" />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feComposite in2="hardAlpha" operator="out" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_10_165" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_10_165" result="shape" />
+                        </filter>
+                        <clipPath id="clip0_10_165">
+                            <rect width="18.4445" height="18.4445" fill="white"
+                                transform="matrix(1 0 -0.0048869 0.999988 113.862 98.1386)" />
+                        </clipPath>
+                    </defs>
+                </svg>
+
+
+
+
+            </div>
+
+            <div class="steet_block" :style="{left: 'calc(' + minimapFix + '% + ' + '10px)'}">
+
+                <div class="info_table">
+
+                    <!-- <div class="info"><img src="hud/mobile.png" class="icon"><p>M</p></div> -->
+                    <div v-if="mic" class="info">
+                        <img src="./assets/img/hud/micro.svg" class="icon" style="opacity:1;transition: all .33s;">
+                        <span>Вы говорите</span>
+                    </div>
+                    <div v-else class="info">
+                        <img src="./assets/img/hud/micro.svg" class="icon">
+                        <span>Вы не говорите</span>
+                    </div>
+                </div>
+
+
+                <div class="street_info">
+                    <img src="./assets/img/hud/map.svg" alt="">
+                    <div class="street">
+                        <div class="crossingroad">{{crossingRoad}}</div>
+                        <div class="street_map">{{street}}</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <!-- <div id="chat" class="chat">
+            <ul id="chat_messages"></ul>
+        </div> -->
+
+        <div id="chat" class="chat">
+
+            <div class="chat_message_wrapper">
+                <ul id="chat_messages">
+                    <li>Romario Richardson: Позовите админа пжжж. . .</li>
+                    <li>Romario Richardson: Позовите админа пжжж. . .</li>
+                    <li>Romario Richardson: Позовите админа пжжж. . .</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                    <li>ек</li>
+                </ul>
+                <div class="input_wrapper">
+                    <input type="text" id="chat_msg" placeholder="Введите сообщение...">
+                    <img class="send" src="./assets/img/hud/send.svg" alt="">
+                </div>
+            </div>
+            <div class="text" v-if="active">
+                <span class="all" onclick="doInChat(writeMe)">ME</span>
+                <span class="all" onclick="doInChat(writeDo)">DO</span>
+                <span class="all" onclick="doInChat(writeB)">ООС</span>
+            </div>
+            <!-- </div> -->
+        </div>
+
+        <div id="prompt" v-if="text">
+            <div class="text" v-html="text"></div>
+        </div>
+        <div id="notify">
+            
+            <div id="noty_layout__bottomCenter" class="noty_theme__fivestar noty_bar noty_type__alert">
+                <p class="main_title">Уведомление</p>
+                <div class="noty_body border text">
+                    <img src="./assets/img/hud/notify.svg">У Вас кончается здоровье, для пополнения здоровья воспользуйтесь “Аптечка”
+                </div>
+            </div>
+        </div>
+
+        <div id="effect"></div>
+        <script src="./assets/js/jquery-3.3.1.min.js"></script>
+
+        <script src="./assets/js/hud.js"></script>
+        <script src="./assets/js/chat.js"></script>
+        <script src="./assets/js/noty.min.js"></script>
+        <script src="./assets/js/notify.js"></script>
+        <script src="https://kit.fontawesome.com/c552bfdf6a.js" crossorigin="anonymous"></script>
+
+
+        <script>
+            $(".all").click(function (e) {
+                e.preventDefault();
+                $(".all").removeClass('active');
+                $(this).addClass('active');
+            })
+        </script>
+
+        <script>
+            function hidehud(toggle) {
+                if (toggle) {
+                    HUD.show = false;
+                    logotype.show = false;
+                } else {
+                    HUD.show = true;
+                    logotype.show = true;
+                }
+            }
+
+            function hidehelp(toggle) {
+                if (toggle) {
+                    $('.help').hide();
+                } else {
+                    $('.help').show();
+                }
+            }
+        </script>
+
+        <script type="text/javascript">
+            function zero_first_format(
+                value
+            ) {
+                if (value < 10) {
+                    value = "0" + value;
+                }
+                return value;
+            }
+
+            function date_time() {
+                var current_datetime = new Date();
+                var day = zero_first_format(current_datetime.getDate());
+                var month = zero_first_format(current_datetime.getMonth() + 1);
+                var year = current_datetime.getFullYear();
+
+                var name;
+                var d = new Date(),
+                    utc = 3;
+
+                d.setHours(d.getHours() + utc, d.getMinutes() + d.getTimezoneOffset());
+                var datatime = d.toTimeString().substring(0, 5);
+
+                return datatime;
+            }
+
+            document.getElementById(
+                "current_date_time_block"
+            ).innerHTML = date_time();
+        </script>
+
+        <script type="text/javascript">
+            setInterval(function () {
+                document.getElementById(
+                    "current_date_time_block2"
+                ).innerHTML = date_time();
+            }, 1000);
+        </script>
+
+        <script>
+            function date_time2() {
+                var current_datetime = new Date();
+                var day = zero_first_format(current_datetime.getDate());
+                var month = zero_first_format(current_datetime.getMonth() + 1);
+                var year = current_datetime.getFullYear();
+
+                var name;
+                var d = new Date(),
+                    utc = 3;
+
+                d.setHours(d.getHours() + utc, d.getMinutes() + d.getTimezoneOffset());
+                var datatime = d.toTimeString().substring(0, 8);
+
+                return day + "." + month + "." + year + " ";
+            }
+
+            // document.getElementById(
+            //     "current_date_time_block3"
+            // ).innerHTML = date_time2();
+        </script>
+
+        <script type="text/javascript">
+            setInterval(function () {
+                document.getElementById(
+                    "current_date_time_block3"
+                ).innerHTML = date_time2();
+            }, 1000);
+        </script>
+
+        <script>
+            function updateSafeZoneSize(screenWidht, screenHeight, safeZoneSize) {
+                var savezoneDiv = document.getElementById("safezone");
+                safeZoneSize = (((1.0 - safeZoneSize) * 0.5) * 100.0);
+                savezoneDiv.style.right = savezoneDiv.style.left = ((screenWidht / 100) * safeZoneSize) + "px";
+                savezoneDiv.style.top = savezoneDiv.style.bottom = ((screenHeight / 100) * safeZoneSize) + "px";
+                return true;
+            }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,993 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/inv.css">
+	<link rel="stylesheet" type="text/css" href="css/inventory.css">
+	<link rel="stylesheet" type="text/css" href="css/circle.css">
+	<link rel="stylesheet" type="text/css" href="css/donate_new.css">
+	<link rel="stylesheet" type="text/css" href="css/slot.css">
+	<link href="../inventory/fonts/font/stylesheet.css" rel="stylesheet" type="text/css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="stylesheet" href="./resources/fonts/stylesheet.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+		rel="stylesheet">
+
+	<!-- Animation -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+
+<body style="display: none; margin: 0;">
+
+	<div id="inventory" class="board" v-if="active" @click.right.prevent="context" @click="hide">
+		<audio id="loading" autoplay="autoplay" volume="-10000">
+			<source
+				src="https://cdn.discordapp.com/attachments/725313200068755457/766783404057296916/a5ef0093cc02003.mp3"
+				type="audio/mp3"></audio>
+		<script>
+			var audio = document.querySelector("audio");
+			audio.volume = 0.3;
+		</script>
+
+		<div id="inv" class="inv">
+
+
+			<transition name="fade">
+				<div class="menuInv animate__animated animate__fadeIn" v-if="page == 1">
+					<!-- <div class="bgshow"></div> -->
+					<!-- <div class="btnlink">
+						<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btnActive">Инвентарь
+						</div>
+						<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+							@click="pages(2)">Статистика</div>
+						<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+							@click="pages(3)">Донат</div>
+					</div> -->
+					<div class="btnlinks_wrapper">
+						<div class="btnlinks_block btnlink">
+							<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btnActive">
+								Инвентарь
+							</div>
+							<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+								@click="pages(2)">Статистика</div>
+							<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+								@click="pages(3)">Донат</div>
+						</div>
+						<div class="btnlinks_block second">
+							<div class="donate_coins">
+								{{donateLS}}
+							</div>
+							<div class="time">
+								<img src="./resources/img/inventory/clock.svg" alt="">
+								<div class="time_info" id="current_date_time_block2"></div>
+							</div>
+							<div class="money">
+								<img src="./resources/img/inventory/wallet.svg" alt="">
+								<div class="money_info">{{moneyLS}} <span> $</span></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="inventory_wrapper">
+						<span class="left_nickname">{{name}}</span>
+						<div class="left-panel">
+							<span class="nickname">{{name}}</span>
+							<img class="man" src="./UI/inv/clothes/man.png" alt="">
+							<div class="desk_clothes cloth_1"><img src="./UI/inv/clothes/mask.png" alt=""></div>
+							<div class="clothes clothes_block"><img src="./UI/inv/clothes/-1.png"></div>
+							<div class="desk_clothes cloth_3"><img src="./UI/inv/clothes/glover.png" alt=""></div>
+							<div class="clothes1 clothes_block"><img src="./UI/inv/clothes/-3.png"></div>
+							<div class="desk_clothes cloth_4"><img src="./UI/inv/clothes/bottom.png" alt=""></div>
+							<div class="clothes2 clothes_block"><img src="./UI/inv/clothes/-4.png"></div>
+							<div class="desk_clothes cloth_5"><img src="./UI/inv/clothes/backp.png" alt=""></div>
+							<div class="clothes3 clothes_block"><img src="./UI/inv/clothes/-5.png"></div>
+							<div class="desk_clothes cloth_6"><img src="./UI/inv/clothes/shoes.png" alt=""></div>
+							<div class="clothes4 clothes_block"><img src="./UI/inv/clothes/-6.png"></div>
+							<div class="desk_clothes cloth_7"><img src="./UI/inv/clothes/asses.png" alt=""></div>
+							<div class="clothes5 clothes_block"><img src="./UI/inv/clothes/-7.png"></div>
+							<div class="desk_clothes cloth_8"><img src="./UI/inv/clothes/tshirt.png" alt=""></div>
+							<div class="clothes6 clothes_block"><img src="./UI/inv/clothes/-8.png"></div>
+							<div class="desk_clothes cloth_9"><img src="./UI/inv/clothes/armo.png" alt=""></div>
+							<div class="clothes7 clothes_block"><img src="./UI/inv/clothes/-9.png"></div>
+							<div class="desk_clothes cloth_11"><img src="./UI/inv/clothes/weat.png" alt=""></div>
+							<div class="clothes8 clothes_block"><img src="./UI/inv/clothes/-11.png"></div>
+							<div class="desk_clothes cloth_12"><img src="./UI/inv/clothes/hat.png" alt=""></div>
+							<div class="clothes9 clothes_block"><img src="./UI/inv/clothes/-12.png"></div>
+							<div class="desk_clothes cloth_13"><img src="./UI/inv/clothes/glass.png" alt=""></div>
+							<div class="clothes10 clothes_block"><img src="./UI/inv/clothes/-13.png"></div>
+							<div class="desk_clothes cloth_14"><img src="./UI/inv/clothes/watch.png" alt=""></div>
+							<div class="clothes11 clothes_block"><img src="./UI/inv/clothes/-14.png"></div>
+						</div>
+
+						<div class="rigth_wrapper">
+
+							<div class="right-panel">
+								<div class="item-List item_block">
+									<item v-for="(item, index) in items" :key="key" :id="item[0]" :index="index"
+										:count="item[1]" :isactive="item[2]" :subdata="item[3]" type="inv" />
+								</div>
+
+								
+
+
+							</div>
+
+							<!-- <div class="line_under"></div> -->
+
+							<img src="./UI/inv/clothes/inventory.png" alt="" class="img_inventory">
+
+							<div class="item_other_wrapper">
+								<div class="item-out item_block" v-if="outside" >
+									<!-- <h6>{{outHead}}</h6> -->
+									
+									<item v-for="(item, index) in outitems" :key="key" :id="item[0]" :index="index"
+										:count="item[1]" :isactive="item[2]" :subdata="item[3]" type="out" />
+										
+								</div>
+									<div class="img_bagash"  v-if="outside">{{outHead}}</div>
+								</div>
+							
+							<!-- <img src="./UI/inv/clothes/bagash.png" alt="" class="img_bagash"> -->
+						</div>
+
+						<!-- <div class="backpack_wrapper">
+
+							<div class="item_backpack">
+								<div class="item_wrapper">
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+									<div class="item"></div>
+								</div>
+							</div>
+							<img src="./UI/inv/clothes/backpack.png" alt="" class="img_backpack">
+						</div> -->
+					</div>
+				</div>
+
+				
+			</transition>
+
+			<transition name="fade">
+				<div class="menuStats" v-if="page == 2">
+					<img class="stats_img" src="./resources/img/inventory/stat_txt.svg" alt="">
+					<div class="menuStats_wrapper">
+						<div class="btnlinks_wrapper">
+							<div class="btnlinks_block btnlink">
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+									@click="pages(1)">Инвентарь</div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btnActive">
+									Статистика</div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+									@click="pages(3)">Донат</div>
+							</div>
+							<div class="btnlinks_block second">
+								<div class="donate_coins">
+									{{donateLS}}
+								</div>
+								<div class="time">
+									<img src="./resources/img/inventory/clock.svg" alt="">
+									<div class="time_info" id="current_date_time_block2"></div>
+								</div>
+								<div class="money">
+									<img src="./resources/img/inventory/wallet.svg" alt="">
+									<div class="money_info">{{moneyLS}} <span> $</span></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="menuStatics">
+							<transition name="fade">
+								<div class="globalstats" v-if="statis == 0">
+									<div class="left-block">
+										<p onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="active"
+											@click="statsid(0)">Осноная статистика</p>
+										<p onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+											@click="statsid(1)">Имущество</p>
+									</div>
+									<div class="right-block">
+										<h1>Основная статистика</h1>
+										<a>Тут Вы можете просмотреть Вашу статистику о персонаже.</a>
+										<div class="blockStats"><span>{{zohan[0]}}</span><span
+												class="right">{{stats[0]}} [{{stats[1]}} XP]</span></div>
+										<div class="blockStats"><span>{{zohan[1]}}</span><span
+												class="right">{{stats[4]}}</span></div>
+										<div class="blockStats"><span>{{zohan[2]}}</span><span
+												class="right">{{stats[6]}}</span></div>
+										<div class="blockStats"><span>{{zohan[3]}}</span><span
+												class="right">{{stats[2]}}</span></div>
+										<div class="blockStats"><span>{{zohan[4]}}</span><span
+												class="right">{{stats[13]}}</span></div>
+										<div class="blockStats"><span>{{zohan[5]}}</span><span
+												class="right">{{stats[12]}}</span></div>
+										<div class="blockStats"><span>{{zohan[6]}}</span><span
+												class="right">{{stats[8]}}</span></div>
+										<div class="blockStats"><span>{{zohan[7]}}</span><span
+												class="right">{{stats[9]}}</span></div>
+										<div class="blockStats"><span>{{zohan[8]}}</span><span
+												class="right">{{stats[7]}}</span></div>
+										<div class="blockStats"><span>{{zohan[9]}}</span><span
+												class="right">{{stats[3]}}</span></div>
+										<div class="blockStats"><span>{{zohan[10]}}</span><span
+												class="right">{{stats[14]}}</span></div>
+									</div>
+									<div class="blockLic">
+										<div class="row__slot">
+											<div class="lic_circle">
+												<div class="circle__inner">
+													<img v-if="stats[5].includes('A')"
+														src="./resources/img/inventory/moto.svg"
+														class="icon_lic motoIco">
+													<img v-else src="./resources/img/inventory/moto.svg"
+														class="icon_lic motoIcoActive" alt="">
+
+													<img v-if="stats[5].includes('B')"
+														src="./resources/img/inventory/car.svg" class="icon_lic carIco"
+														alt="">
+													<img v-else src="./resources/img/inventory/car.svg"
+														class="icon_lic carIcoActive" alt="">
+
+													<img v-if="stats[5].includes('C')"
+														src="./resources/img/inventory/truck.svg"
+														class="icon_lic truckIco" alt="">
+													<img v-else src="./resources/img/inventory/truck.svg"
+														class="icon_lic truckIcoActive" alt="">
+
+													<img v-if="stats[5].includes('LS')"
+														src="./resources/img/inventory/plane.svg"
+														class="icon_lic planeIco" alt="">
+													<img v-else src="./resources/img/inventory/plane.svg"
+														class="icon_lic planeIcoActive" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</transition>
+							<transition name="fade">
+								<div class="stats" v-if="statis == 1">
+									<div class="left-block">
+										<p onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+											@click="statsid(0)">Осноная статистика</p>
+										<p onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="active"
+											@click="statsid(1)">Имущество</p>
+									</div>
+									<div class="right-block">
+										<h1>Имущество</h1>
+										<a>Тут Вы можете просмотреть Ваше имущество на этом персонаже.</a>
+									</div>
+									<div class="blockLic" style="opacity: 0;">
+										<div class="row__slot">
+											<div class="lic_circle">
+												<div class="circle__inner">
+													<img v-if="stats[5].includes('A')"
+														src="./resources/img/inventory/moto.svg"
+														class="icon_lic motoIco">
+													<img v-else src="./resources/img/inventory/moto.svg"
+														class="icon_lic motoIcoActive" alt="">
+
+													<img v-if="stats[5].includes('B')"
+														src="./resources/img/inventory/car.svg" class="icon_lic carIco"
+														alt="">
+													<img v-else src="./resources/img/inventory/car.svg"
+														class="icon_lic carIcoActive" alt="">
+
+													<img v-if="stats[5].includes('C')"
+														src="./resources/img/inventory/truck.svg"
+														class="icon_lic truckIco" alt="">
+													<img v-else src="./resources/img/inventory/truck.svg"
+														class="icon_lic truckIcoActive" alt="">
+
+													<img v-if="stats[5].includes('LS')"
+														src="./resources/img/inventory/plane.svg"
+														class="icon_lic planeIco" alt="">
+													<img v-else src="./resources/img/inventory/plane.svg"
+														class="icon_lic planeIcoActive" alt="">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</transition>
+						</div>
+					</div>
+				</div>
+
+			</transition>
+
+			<transition name="fade">
+				<div class="donate" v-if="page == 3">
+					<img class="donats_img" src="./resources/img/inventory/donat_txt.svg" alt="">
+					<div class="donate_wrapper">
+						<div class="btnlinks_wrapper">
+							<div class="btnlinks_block btnlink">
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+									@click="pages(1)">Инвентарь</div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btn_index"
+									@click="pages(2)">Статистика</div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btnActive"
+									@click="pages(3)">Донат</div>
+							</div>
+							<div class="btnlinks_block second">
+								<div class="donate_coins">
+									{{donateLS}}
+								</div>
+								<div class="time">
+									<img src="./resources/img/inventory/clock.svg" alt="">
+									<div class="time_info">{{time}}</div>
+								</div>
+								<div class="money">
+									<img src="./resources/img/inventory/wallet.svg" alt="">
+									<div class="money_info">{{moneyLS}} <span> $</span></div>
+								</div>
+							</div>
+						</div>
+						<div class="menuGood" v-if="menu == 0">
+
+							<div class="donate_wrapper second">
+								<div class="btnlinks">
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+										class="btns btns_active" @click="open(0)">
+										Лучшее</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(1)">Валюта</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(2)">Премиум</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(3)">Разное </div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(5)">Рулетка</div>
+								</div>
+								<div class="btn_wrapper">
+									<div class="flex_btns">
+										<div class="btn btn_icon coin blue">
+											<h1>Старт для начала</h1>
+
+											<li>Автомобиль: <span>Neon</span></li>
+											<li>Лицензия на автомобиль</li>
+											<li> <span class="money_list">150 000 000 $</span></li>
+											<li>Опыт: <span>10</span></li>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">427</p>
+												</div>
+												<div class="btnbuy" @click="buy(15)">Приобрести</div>
+											</li>
+										</div>
+										<div class="btn btn_icon coin purple">
+											<h1>Солидненько</h1>
+
+											<li>Автомобиль: <span>Sultan</span></li>
+											<li>Лицензия на автомобиль</li>
+											<li> <span class="money_list">150 000 000 $</span></li>
+											<li>Опыт: <span>15</span></li>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">1000</p>
+												</div>
+												<div class="btnbuy" @click="buy(16)">Приобрести</div>
+											</li>
+										</div>
+										<div class="btn btn_icon coin green">
+											<h1>Самое то</h1>
+
+											<li>Автомобиль: <span>Nero</span></li>
+											<li>Лицензия на автомобиль</li>
+											<li> <span class="money_list">150 000 000 $</span></li>
+											<li>Опыт: <span>20</span></li>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">1500</p>
+												</div>
+												<div class="btnbuy" @click="buy(17)">Приобрести</div>
+											</li>
+										</div>
+									</div>
+									<div class="btn btn_icon coin btn_full gold">
+										<img class="gold_bg_one" src="./resources/img/inventory/gold_1.svg" alt="">
+										<img class="gold_bg_two" src="./resources/img/inventory/gold_2.png" alt="">
+										<h1>Золотые запасы</h1>
+
+										<li>Автомобиль: <span>Caracara2</span></li>
+										<li>Лицензия на автомобиль</li>
+										<li> <span class="money_list">150 000 000 $</span></li>
+										<li>Опыт: <span>25</span></li>
+										<li class="info_flex">
+											<div class="donate_flex_block">
+												<img src="./resources/img/inventory/logo_small.svg" alt="">
+												<p class="pricesell">2500</p>
+											</div>
+											<div class="btnbuy" @click="buy(18)">Приобрести</div>
+										</li>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="menuMoney" v-if="menu == 1">
+							<div class="donate_wrapper second">
+								<div class="btnlinks">
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(0)">Лучшее</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+										class="btns btns_active" @click="open(1)">
+										Валюта</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(2)">Премиум</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(3)">Разное </div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(5)">Рулетка</div>
+								</div>
+
+
+								<div class="btn_wrapper">
+									<div class="flex_btns">
+										<div class="btn btn_icon cash blue">
+											<h2>Более чем выгодно</h2>
+											<h1>100 000$</h1>
+											<div class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">2500</p>
+												</div>
+												<div class="btnbuy" @click="buy(17)">Приобрести</div>
+											</div>
+										</div>
+										<div class="btn btn_icon cash purple">
+											<h2>Более чем выгодно</h2>
+											<h1>300 000$</h1>
+											<div class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">2500</p>
+												</div>
+												<div class="btnbuy" @click="buy(12)">Приобрести</div>
+											</div>
+										</div>
+										<div class="btn btn_icon cash green">
+											<h2>Более чем выгодно</h2>
+											<h1>500 000$</h1>
+											<div class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">2500</p>
+												</div>
+												<div class="btnbuy" @click="buy(13)">Приобрести</div>
+											</div>
+										</div>
+
+									</div>
+									<div class="btn btn_icon cash btn_full gold green">
+
+										<img class="cash_bg_one" src="./resources/img/inventory/cash.png" alt="">
+										<img class="cash_bg_two" src="./resources/img/inventory/cash_2.png" alt="">
+
+										<h1>Более чем выгодно</h1>
+										<h1 class="big_info">1 000 000$</h1>
+										<div class="info_flex">
+											<div class="donate_flex_block">
+												<img src="./resources/img/inventory/logo_small.svg" alt="">
+												<p class="pricesell">2500</p>
+											</div>
+											<div class="btnbuy" @click="buy(14)">Приобрести</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="menuVip" v-if="menu == 2">
+							<div class="donate_wrapper second">
+								<div class="btnlinks">
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(0)">Лучшее</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(1)">Валюта</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+										class="btns btns_active" @click="open(2)">
+										Премиум</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(3)">Разное </div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(5)">Рулетка</div>
+								</div>
+								<div class="btn_wrapper">
+									<div class="flex_btns">
+										<div class="btn btn_icon coin platinum yellow">
+											<h2>Получай больше прибыли</h2>
+											<h1>Bronze</h1>
+											<div class="modal_info">
+												<div class="modal_img">
+													<div class="modal_block">
+														<h1>Пакет Bronze</h1>
+														<div>Лицензия на автомобиль</div>
+														<div>Автомобиль:Caracara 2</div>
+														<div>150 000 000$</div>
+														<div>Лицензия на автомобиль</div>
+														<div>Автомобиль:Caracara 2</div>
+														<div>150 000 000$</div>
+													</div>
+												</div>
+											</div>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">300</p>
+												</div>
+												<div class="btnbuy" @click="buy(3)">Приобрести</div>
+											</li>
+										</div>
+										<div class="btn btn_icon coin platinum default">
+											<h2>Получай больше прибыли</h2>
+											<h1>Silver</h1>
+											<div class="modal_info">
+												<div class="modal_img">
+													<div class="modal_block">
+														<h1>Пакет Bronze</h1>
+														<div>Лицензия на автомобиль</div>
+														<div>Автомобиль:Caracara 2</div>
+														<div>150 000 000$</div>
+														<div>Лицензия на автомобиль</div>
+														<div>Автомобиль:Caracara 2</div>
+														<div>150 000 000$</div>
+													</div>
+												</div>
+											</div>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">600</p>
+												</div>
+												<div class="btnbuy" @click="buy(4)">Приобрести</div>
+											</li>
+										</div>
+										<div class="btn btn_icon coin platinum yellow">
+											<h2>Получай больше прибыли</h2>
+											<h1>Gold</h1>
+											<div class="modal_info">
+												<div class="modal_img">
+													<div class="modal_block">
+														<h1>Пакет Bronze</h1>
+														<div>Лицензия на автомобиль</div>
+														<div>Автомобиль:Caracara 2</div>
+														<div>150 000 000$</div>
+														<div>Лицензия на автомобиль</div>
+														<div>Автомобиль:Caracara 2</div>
+														<div>150 000 000$</div>
+													</div>
+												</div>
+											</div>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">800</p>
+												</div>
+												<div class="btnbuy" @click="buy(5)">Приобрести</div>
+											</li>
+										</div>
+									</div>
+									<div class="btn btn_icon coin platinum btn_full gold silver">
+										<img class="platinum_bg_one" src="./resources/img/inventory/platina.png" alt="">
+										<img class="platinum_bg_two" src="./resources/img/inventory/platina_2.png"
+											alt="">
+										<h1>Получай больше прибыли</h1>
+										<h3>Platinum</h3>
+										<div class="modal_info">
+											<div class="modal_img">
+												<div class="modal_block">
+													<h1>Пакет Bronze</h1>
+													<div>Лицензия на автомобиль</div>
+													<div>Автомобиль:Caracara 2</div>
+													<div>150 000 000$</div>
+													<div>Лицензия на автомобиль</div>
+													<div>Автомобиль:Caracara 2</div>
+													<div>150 000 000$</div>
+												</div>
+											</div>
+										</div>
+										<li class="info_flex">
+											<div class="donate_flex_block">
+												<img src="./resources/img/inventory/logo_small.svg" alt="">
+												<p class="pricesell">1000</p>
+											</div>
+											<div class="btnbuy" @click="buy(6)">Приобрести</div>
+										</li>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="menuOther" v-if="menu == 3">
+							<div class="donate_wrapper second">
+								<div class="btnlinks">
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(0)">Лучшее</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(1)">Валюта</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(2)">Премиум</div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+										class="btns btns_active" @click="open(3)">
+										Разное </div>
+									<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+										@click="open(5)">Рулетка</div>
+								</div>
+								<div class="btn_wrapper">
+									<div class="flex_btns">
+										<div class="btn btn_icon other yellow">
+											<h1>Красота требует жертв</h1>
+											<h2>Смена внешности</h2>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">600</p>
+												</div>
+												<div class="btnbuy" @click="buy(0)">Приобрести</div>
+											</li>
+										</div>
+										<div class="btn btn_icon other purple">
+											<h1>Лицензия</h1>
+											<h2>Автомобиль</h2>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">500</p>
+												</div>
+												<div class="btnbuy" @click="buy(21)">Приобрести</div>
+											</li>
+										</div>
+										<div class="btn btn_icon other blue">
+											<h1>Лицензия</h1>
+											<h2>Грузовик</h2>
+											<li class="info_flex">
+												<div class="donate_flex_block">
+													<img src="./resources/img/inventory/logo_small.svg" alt="">
+													<p class="pricesell">800</p>
+												</div>
+												<div class="btnbuy" @click="buy(20)">Приобрести</div>
+											</li>
+										</div>
+									</div>
+									<div class="btn btn_icon other btn_full gold red">
+										<img class="other_bg_one" src="./resources/img/inventory/warned.png" alt="">
+										<img class="other_bg_two" src="./resources/img/inventory/warned_2.png" alt="">
+										<h1>Предупреждения</h1>
+										<h3>СНЯТЬ ВАРН</h3>
+										<li class="info_flex">
+											<div class="donate_flex_block">
+												<img src="./resources/img/inventory/logo_small.svg" alt="">
+												<p class="pricesell">1000</p>
+											</div>
+											<div class="btnbuy" @click="buy(2)">Приобрести</div>
+										</li>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="menuRoller" v-if="menu == 5">
+							<div class="btnlinks">
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+									@click="open(0)">Лучшее</div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+									@click="open(1)">Валюта</div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+									@click="open(2)">Премиум</div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;" class="btns"
+									@click="open(3)">Разное </div>
+								<div onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+									class="btns btns_active" @click="open(5)">
+									Рулетка</div>
+							</div>
+
+							<div class="main">
+								<div class="rulet"> </div>
+								<div class="baraban">
+
+									<div class='rouletteRoller__roller' style="text-align: center;">
+									</div>
+
+									<div class="content container" style="position: relative; height: 163px;">
+
+										<div class="content_elem white">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/cash_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem red">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/car_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem yellow">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/star_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem blue">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/tshirt_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem white">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/cash_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem red">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/car_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem yellow">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/star_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem blue">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/tshirt_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem white">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/cash_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem red">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/car_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem yellow">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/star_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem blue">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/tshirt_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem white">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/cash_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem red">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/car_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem yellow">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/star_rulet.png" alt="">
+											</div>
+										</div>
+
+										<div class="content_elem blue">
+											<div class="content_elem_cover">
+												<img src="./resources/img/inventory/tshirt_rulet.png" alt="">
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="donate_flex_block">
+								<img src="./resources/img/inventory/logo_small.svg" alt="">
+								<p class="pricesell">1000</p>
+							</div>
+
+							<div class="btn_buy" onclick="new Audio('./UI/auto/ui.mp3').play(); return false;"
+								@click="wheel(10)">Покрутить</div>
+						</div>
+
+					</div>
+				</div>
+			</transition>
+		</div>
+	</div>
+
+
+	<nav class="context_menu" v-if="active" :style="style">
+		<ul>
+			<li v-if="type" @click="btn(1)">{{men[0]}}</li>
+			<li v-if="type" @click="btn(2)">{{men[1]}}</li>
+			<li v-if="!type" @click="btn(3)">{{men[2]}}</li>
+			<li v-if="type" @click="btn(4)">{{men[3]}}</li>
+		</ul>
+	</nav>
+
+	<div class="circle" @mouseOut="out" v-show="active" style="opacity:0; height:810px; width:810px">
+		<div class="bg"></div>
+		<div id="8" class="center" @mouseOver="over" @click="btn">
+			<div id="8" class="text">{{description}}</div>
+			<p class="sub">{{subdata}}</p>
+		</div>
+		<ul>
+			<li id="0" @mouseOver="over">
+				<div id="0" class="contents" :class="icons[0]" @click="btn"></div>
+			</li>
+			<li id="1" @mouseOver="over">
+				<div id="1" class="contents" :class="icons[1]" @click="btn"></div>
+			</li>
+			<li id="2" @mouseOver="over">
+				<div id="2" class="contents" :class="icons[2]" @click="btn"></div>
+			</li>
+			<li id="3" @mouseOver="over">
+				<div id="3" class="contents" :class="icons[3]" @click="btn"></div>
+			</li>
+			<li id="4" @mouseOver="over">
+				<div id="4" class="contents" :class="icons[4]" @click="btn"></div>
+			</li>
+			<li id="5" @mouseOver="over">
+				<div id="5" class="contents" :class="icons[5]" @click="btn"></div>
+			</li>
+			<li id="6" @mouseOver="over">
+				<div id="6" class="contents" :class="icons[6]" @click="btn"></div>
+			</li>
+			<li id="7" @mouseOver="over">
+				<div id="7" class="contents" :class="icons[7]" @click="btn"></div>
+			</li>
+		</ul>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+		integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+		crossorigin="anonymous"></script>
+	<script src='js/vue.js'></script>
+	<script src="js/move.min.js"></script>
+	<script src='js/inventory.js'></script>
+	<script src='js/roller.js'></script>
+	<script src='js/circle.js'></script>
+	<script>
+		$(function () {
+			// $("#inv .modal_info").click(function (e) {
+			// 	e.preventDefault();
+			// 	$("#inv .modal_block").removeClass('active');
+			// 	$(this).addClass('active');
+			// })
+
+			$(".modal_img").click(function (e) {
+				e.preventDefault();
+				$(".modal_block").not(this).removeClass('active');
+				$(this).toggleClass('active');
+			})
+		});
+	</script>
+	<script>
+		Vue.filter('formatThousands', (x) => {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+		})
+	</script>
+
+<script type="text/javascript">
+	// $(document).load($(window).bind("resize", checkPosition));
+	
+	// function checkWindowSize() {
+
+	// 	if ($(window).width() < 1400) {
+	// 		$('#inv .item_block .item.active').css("display", "none");
+	// 	} else {
+	// 		$('#inv .item_block .item.active').css('width' + 30 + 'vh');
+	// 	}
+
+	// }
+
+	// $(window).resize(checkWindowSize);
+
+// 	function convertPXToVW(px) {
+// 	return px * (100 / document.documentElement.clientWidth);
+// }
+
+// 	$(window).resize(function(e){
+//    if($(window).width() < 568) {
+//    console.log($(window).width());
+//    $('#inv .item_block .item.active').css("bottom", '+=30' );
+//             } else if ($(window).width() >= 568) {
+//                 $("#crewimage").each(function() {
+//                 $(this).attr("src","https://ithemes.com/wp-content/uploads/2012/07/mobile300.png");
+//                 });                        
+// 	}         
+// });
+</script>
+	<script>
+		window.onload = function () {
+			document.getElementsByTagName('body')[0].style.display = "block";
+		}
+	</script>
+
+	<script type="text/javascript">
+		/* функция добавления ведущих нулей */ /* (если число меньше десяти, перед числом добавляем ноль) */
+		function zero_first_format(
+			value
+		) {
+			if (value < 10) {
+				value = "0" + value;
+			}
+			return value;
+		}
+		/* функция получения текущей даты и времени */
+		function date_time() {
+			var current_datetime = new Date();
+			var day = zero_first_format(current_datetime.getDate());
+			var month = zero_first_format(current_datetime.getMonth() + 1);
+			var year = current_datetime.getFullYear();
+
+			var name;
+			var d = new Date(),
+				utc = 3;
+
+			d.setHours(d.getHours() + utc, d.getMinutes() + d.getTimezoneOffset());
+			var datatime = d.toTimeString().substring(0, 8);
+
+			return datatime;
+		}
+
+		document.getElementById(
+			"current_date_time_block"
+		).innerHTML = date_time();
+	</script>
+
+	<script type="text/javascript">
+		setInterval(function () {
+			document.getElementById(
+				"current_date_time_block2"
+			).innerHTML = date_time();
+		}, 1000);
+	</script>
+
+	<script>
+		function updateSafeZoneSize(screenWidht, screenHeight, safeZoneSize) {
+			var savezoneDiv = document.getElementById("safezone");
+			safeZoneSize = (((1.0 - safeZoneSize) * 0.5) * 100.0);
+			savezoneDiv.style.right = savezoneDiv.style.left = ((screenWidht / 100) * safeZoneSize) + "px";
+			savezoneDiv.style.top = savezoneDiv.style.bottom = ((screenHeight / 100) * safeZoneSize) + "px";
+			return true;
+		}
+	</script>
+
+</body>
+
+</html>

@@ -63,7 +63,7 @@
                     <p class="all">Всего <span>{{counter}}</span></p>
                 </div>
                 <!-- <hr v-if="menu == 1"> -->
-                <table v-if="menu == 1" border="0" cellspacing="1" cellpadding="1">
+                <div class="table_wrap_main" v-if="menu == 1">
                     <!-- <div class="table_row">
                         <div>ID</div>
                         <div>Имя</div>
@@ -76,7 +76,28 @@
                         <div>{{member[3]}}</div>
                         <div>{{member[4]}}</div>
                     </div> -->
-                    <tr class="main">
+                    <div class="table_row main">
+                        <div class="table_item">
+                            <div class="item">ID</div>
+                            <div class="item">Имя</div>
+                            <div class="item">Уровень</div>
+                            <div class="item">Ранг</div>
+                        </div>
+                    </div>
+                    <div class="table_row items" v-for="member in members">
+                        <div class="table_item">
+                            <div>{{member[1]}}</div>
+                        </div>
+                        <div class="table_item">
+                            <div v-bind:class="[ member[0] ? 'online' : 'offline' ]">{{member[2]}}</div></div>
+                        <div class="table_item">
+                            <div>{{member[3]}}</div>
+                        </div>
+                        <div class="table_item">
+                            <div>{{member[4]}}</div>
+                        </div>
+                    </div>
+                    <!-- <tr class="main">
                         <th>ID</th>
                         <th>Имя</th>
                         <th>Уровень</th>
@@ -88,8 +109,8 @@
                         <th>{{member[3]}}</th>
                         <th>{{member[4]}}</th>
                         <div></div>
-                    </tr>
-                </table>
+                    </tr> -->
+                </div>
                 </div>
                 <div class="active_wrapper" v-if="menu > 1">
                     <div class="active_main">

@@ -2,20 +2,25 @@ function notify(type, layout, message, time) {
     var types = ['alert', 'error', 'success', 'information', 'warning'];
     var layouts = ['top', 'topLeft', 'topCenter', 'topRight', 'center', 'centerLeft', 'centerRight', 'bottom', 'bottomLeft', 'bottomCenter', 'bottomRight'];
     var icons = [`
-    <div class="border"></div>
-    <img src="./res_phoenix/img_phoenix/icon-notify/question.svg" width="25px">`, 
+    <div class="border">
+    <img src="./res_phoenix/img_phoenix/icon-notify/question.svg" width="25px">
+    </div>`, 
     `
-    <div class="border"></div>
-    <img src="./res_phoenix/img_phoenix/icon-notify/error.svg" width="25px">`, 
+    <div class="border">
+    <img src="./res_phoenix/img_phoenix/icon-notify/error.svg" width="25px">
+    </div>`, 
     `
-    <div class="border"></div>
-    <img src="./res_phoenix/img_phoenix/icon-notify/success.svg" width="25px">`, 
+    <div class="border">
+    <img src="./res_phoenix/img_phoenix/icon-notify/success.svg" width="25px">
+    </div>`, 
     `
-    <div class="border"></div>
-    <img src="./res_phoenix/img_phoenix/icon-notify/info.svg" width="25px">`, 
+    <div class="border">
+    <img src="./res_phoenix/img_phoenix/icon-notify/info.svg" width="25px">
+    </div>`, 
     `
-    <div class="border"></div>
+    <div class="border">
     <img src="./res_phoenix/img_phoenix/icon-notify/warning.svg" width="25px">
+    </div>
      `]
     message = '<div class="text">' + icons[type] + message + '</div>';
     new Noty({

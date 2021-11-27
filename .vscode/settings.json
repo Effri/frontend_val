@@ -16,5 +16,6 @@
        "> 1%",
        "last 10 versions"
   ],
-  "emmet.triggerExpansionOnTab": true
+"emmet.triggerExpansionOnTab": true,
+"liveServer.settings.port": 5503
   }
