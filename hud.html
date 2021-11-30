@@ -91,6 +91,145 @@
                     </div>
                 </div>
 
+                <div class="eatings">
+
+                    <div class="eat">
+
+                        <figure class="chart">
+                            <figcaption>
+                                <img src="" alt="">
+                            </figcaption>
+                            <div class="node"></div>
+                            <svg width="200" height="200">
+                              <circle class="outer" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)" :stroke-dashoffset="maxeat-seteat"/>
+                            </svg>
+                          </figure>
+
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M27.4959 19L32.0947 23.9807C33.0042 24.965 33.6236 26.2194 33.8748 27.5851C34.1259 28.9508 33.9975 30.3665 33.5056 31.6531C33.0138 32.9398 32.1807 34.0395 31.1116 34.8133C30.0426 35.587 28.7858 36 27.5 36C26.2142 36 24.9574 35.587 23.8884 34.8133C22.8193 34.0395 21.9862 32.9398 21.4944 31.6531C21.0025 30.3665 20.8741 28.9508 21.1252 27.5851C21.3764 26.2194 21.9958 24.965 22.9053 23.9807L27.4959 19Z"
+                                fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"  />
+                            <!-- <g filter="url(#filter0_d_138_34)">
+                                <mask id="path-2-inside-1_138_34" fill="white">
+                                    <path
+                                        d="M52 28C52 41.2548 41.2548 52 28 52C14.7452 52 4 41.2548 4 28C4 14.7452 14.7452 4 28 4C41.2548 4 52 14.7452 52 28ZM6.64 28C6.64 39.7968 16.2032 49.36 28 49.36C39.7968 49.36 49.36 39.7968 49.36 28C49.36 16.2032 39.7968 6.64 28 6.64C16.2032 6.64 6.64 16.2032 6.64 28Z" />
+                                </mask>
+                                <path fill-rule="evenodd"
+                                    d="M52 28C52 41.2548 41.2548 52 28 52C14.7452 52 4 41.2548 4 28C4 14.7452 14.7452 4 28 4C41.2548 4 52 14.7452 52 28ZM6.64 28C6.64 39.7968 16.2032 49.36 28 49.36C39.7968 49.36 49.36 39.7968 49.36 28C49.36 16.2032 39.7968 6.64 28 6.64C16.2032 6.64 6.64 16.2032 6.64 28Z"
+                                    stroke="white" stroke-width="10" mask="url(#path-2-inside-1_138_34)"
+                                    stroke-linecap="round" stroke-linejoin="round" opacity="1" fill="none" :stroke-dasharray="maxeat + eat" style="stroke-dashoffset: 504.267"/>
+                            </g> -->
+                            <g filter="url(#filter0_d_138_34)">
+                                <mask id="path-2-inside-1_138_34" fill="white">
+                                    <path
+                                        d="M28 52C41.2548 52 52 41.2548 52 28C52 14.7675 41.291 4.03625 28.067 4.00009V6.6401C39.833 6.67625 49.36 16.2256 49.36 28C49.36 39.7968 39.7968 49.36 28 49.36C16.2032 49.36 6.64 39.7968 6.64 28C6.64 16.2032 16.2032 6.64 28 6.64V4C14.7452 4 4 14.7452 4 28C4 41.2548 14.7452 52 28 52Z" />
+                                </mask>
+                                <path
+                                    d="M28 52C41.2548 52 52 41.2548 52 28C52 14.7675 41.291 4.03625 28.067 4.00009V6.6401C39.833 6.67625 49.36 16.2256 49.36 28C49.36 39.7968 39.7968 49.36 28 49.36C16.2032 49.36 6.64 39.7968 6.64 28C6.64 16.2032 16.2032 6.64 28 6.64V4C14.7452 4 4 14.7452 4 28C4 41.2548 14.7452 52 28 52Z"
+                                    fill="#C4C4C4" stroke-linecap="round" stroke-linejoin="round" opacity="1" fill="none" :stroke-dasharray="maxeat + eat" style="stroke-dashoffset: 504.267" />
+                                    
+                                    <!-- <path id="hud-speedometer" fill-rule="evenodd" stroke="url(#path-2-inside-1_138_34)" stroke-width="10px"
+                        stroke-linecap="round" stroke-linejoin="round" opacity="1" fill="none"
+                        d="M60.340,185.660 C18.553,143.874 18.553,76.126 60.340,34.340 C102.126,-7.447 169.874,-7.447 211.660,34.340 C253.446,76.126 253.446,143.874 211.660,185.660 "
+                        :stroke-dasharray="defspeed + speed" style="stroke-dashoffset: 504.267"></path> -->
+
+                        <path
+                            d="M82.8379 263.733C60.2727 245.256 44.0124 220.316 36.2802 192.325C28.5481 164.334 29.7215 134.657 39.6402 107.352C49.5588 80.0472 67.7385 56.4475 91.6935 39.7796C115.648 23.1117 144.209 14.1892 173.471 14.2321C202.733 14.275 231.267 23.2812 255.172 40.0193C279.077 56.7575 297.186 80.4104 307.024 107.744C316.861 135.078 317.946 164.758 310.13 192.727C302.315 220.695 285.98 245.587 263.36 263.998L254.879 253.748C275.37 237.069 290.167 214.521 297.247 189.185C304.327 163.849 303.344 136.963 294.433 112.202C285.522 87.441 269.117 66.0145 247.462 50.8519C225.807 35.6893 199.959 27.5308 173.451 27.4919C146.944 27.4531 121.071 35.5357 99.3713 50.6347C77.6712 65.7337 61.2028 87.112 52.2178 111.847C43.2327 136.581 42.1697 163.465 49.174 188.821C56.1784 214.178 70.9081 236.77 91.3493 253.508L82.8379 263.733Z"
+                            stroke="url(#path-2-inside-1_138_34)" stroke-dasharray="1400 1400"
+                            :stroke-dashoffset="speedPercentage" stroke-width="60" mask="url(#path-2-inside-1_138_34)" />
+
+                            
+
+                                <!-- <path
+                                    d="M28 4H33V-1H28V4ZM28 6.64V11.64H33V6.64H28ZM28.067 6.6401H23.067V11.6248L28.0517 11.6401L28.067 6.6401ZM28.067 4.00009L28.0807 -0.99989L23.067 -1.0136V4.00009H28.067ZM47 28C47 38.4934 38.4934 47 28 47V57C44.0163 57 57 44.0163 57 28H47ZM28 47C17.5066 47 9 38.4934 9 28H-1C-1 44.0163 11.9837 57 28 57V47ZM9 28C9 17.5066 17.5066 9 28 9V-1C11.9837 -1 -1 11.9837 -1 28H9ZM1.64 28C1.64 42.5582 13.4418 54.36 28 54.36V44.36C18.9646 44.36 11.64 37.0354 11.64 28H1.64ZM28 54.36C42.5582 54.36 54.36 42.5582 54.36 28H44.36C44.36 37.0354 37.0354 44.36 28 44.36V54.36ZM28 1.64C13.4418 1.64 1.64 13.4418 1.64 28H11.64C11.64 18.9646 18.9646 11.64 28 11.64V1.64ZM23 4V6.64H33V4H23ZM54.36 28C54.36 13.4693 42.6029 1.68474 28.0824 1.64013L28.0517 11.6401C37.0631 11.6678 44.36 18.9818 44.36 28H54.36ZM28.0534 9.00007C38.5221 9.0287 47 17.5244 47 28H57C57 12.0107 44.06 -0.956197 28.0807 -0.99989L28.0534 9.00007ZM33.067 6.6401V4.00009H23.067V6.6401H33.067Z"
+                                    fill="white" mask="url(#path-2-inside-1_138_34)" stroke-linecap="round" stroke-linejoin="round" opacity="1" fill="none" :stroke-dasharray="maxeat + eat" style="stroke-dashoffset: 504.267" /> -->
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_138_34" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse"
+                                    color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                        result="hardAlpha" />
+                                    <feOffset />
+                                    <feGaussianBlur stdDeviation="2" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_138_34" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_138_34" result="shape" />
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    
+    
+                    <!-- <div class="eat_border" v-if="eat < 20" style="border-color: #f2524c;
+                    filter: drop-shadow(0px 0px 25px #f2524c);
+                    transition: 3s;">
+                        <img src="hud/eat.png" class="icohud">
+                    </div>
+                    <div class="eat_border" v-else-if="eat < 50" style="border-color: #F2C94C;
+                    filter: drop-shadow(0px 0px 25px #F2C94C);
+                    transition: 3s;">
+                        <img src="hud/eat.png" class="icohud">
+                    </div>
+                    <div class="eat_border" v-else style="border: 5px solid #2F80ED;
+                    box-sizing: border-box;
+                    filter: drop-shadow(0px 0px 4px #2F80ED);
+                    transition: 3s;">
+                        <img src="hud/eat.png" class="icohud">
+                    </div> -->
+    
+                    <div class="water">
+
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M27.4959 19L32.0947 23.9807C33.0042 24.965 33.6236 26.2194 33.8748 27.5851C34.1259 28.9508 33.9975 30.3665 33.5056 31.6531C33.0138 32.9398 32.1807 34.0395 31.1116 34.8133C30.0426 35.587 28.7858 36 27.5 36C26.2142 36 24.9574 35.587 23.8884 34.8133C22.8193 34.0395 21.9862 32.9398 21.4944 31.6531C21.0025 30.3665 20.8741 28.9508 21.1252 27.5851C21.3764 26.2194 21.9958 24.965 22.9053 23.9807L27.4959 19Z"
+                                fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <g filter="url(#filter0_d_138_34)">
+                                <mask id="path-2-inside-1_138_34" fill="white">
+                                    <path
+                                        d="M52 28C52 41.2548 41.2548 52 28 52C14.7452 52 4 41.2548 4 28C4 14.7452 14.7452 4 28 4C41.2548 4 52 14.7452 52 28ZM6.64 28C6.64 39.7968 16.2032 49.36 28 49.36C39.7968 49.36 49.36 39.7968 49.36 28C49.36 16.2032 39.7968 6.64 28 6.64C16.2032 6.64 6.64 16.2032 6.64 28Z" />
+                                </mask>
+                                <path
+                                    d="M52 28C52 41.2548 41.2548 52 28 52C14.7452 52 4 41.2548 4 28C4 14.7452 14.7452 4 28 4C41.2548 4 52 14.7452 52 28ZM6.64 28C6.64 39.7968 16.2032 49.36 28 49.36C39.7968 49.36 49.36 39.7968 49.36 28C49.36 16.2032 39.7968 6.64 28 6.64C16.2032 6.64 6.64 16.2032 6.64 28Z"
+                                    stroke="white" stroke-width="10" mask="url(#path-2-inside-1_138_34)" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_138_34" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse"
+                                    color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                        result="hardAlpha" />
+                                    <feOffset />
+                                    <feGaussianBlur stdDeviation="2" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_138_34" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_138_34" result="shape" />
+                                </filter>
+                            </defs>
+                        </svg>
+    
+                        <!-- <div class="water_border" v-if="water < 20" style="border-color: #f2524c;
+                        filter: drop-shadow(0px 0px 25px #f2524c);
+                        transition: 3s;">
+                            <img src="hud/water.png" class="waterhud">
+                        </div>
+                        <div class="water_border" v-else-if="water < 50" style="border-color: #F2C94C;
+                        filter: drop-shadow(0px 0px 25px #F2C94C);
+                        transition: 3s;">
+                            <img src="hud/water.png" class="waterhud">
+                        </div>
+                        <div class="water_border" v-else style="border: 5px solid #2F80ED;
+                        box-sizing: border-box;
+                        filter: drop-shadow(0px 0px 4px #2F80ED);
+                        transition: 3s;">
+                            <img src="hud/water.png" class="waterhud">
+                        </div> -->
+    
+                    </div>
+                </div>
+    
+
             </div>
 
             <div class="bonus">
@@ -125,47 +264,7 @@
                 </div> -->
             </div>
 
-            <!-- <div class="eatings">
-
-                <div class="eat_border" v-if="eat < 20" style="border-color: #f2524c;
-                filter: drop-shadow(0px 0px 25px #f2524c);
-                transition: 3s;">
-                    <img src="hud/eat.png" class="icohud">
-                </div>
-                <div class="eat_border" v-else-if="eat < 50" style="border-color: #F2C94C;
-                filter: drop-shadow(0px 0px 25px #F2C94C);
-                transition: 3s;">
-                    <img src="hud/eat.png" class="icohud">
-                </div>
-                <div class="eat_border" v-else style="border: 5px solid #2F80ED;
-                box-sizing: border-box;
-                filter: drop-shadow(0px 0px 4px #2F80ED);
-                transition: 3s;">
-                    <img src="hud/eat.png" class="icohud">
-                </div>
-
-                <div class="water">
-
-                    <div class="water_border" v-if="water < 20" style="border-color: #f2524c;
-                    filter: drop-shadow(0px 0px 25px #f2524c);
-                    transition: 3s;">
-                        <img src="hud/water.png" class="waterhud">
-                    </div>
-                    <div class="water_border" v-else-if="water < 50" style="border-color: #F2C94C;
-                    filter: drop-shadow(0px 0px 25px #F2C94C);
-                    transition: 3s;">
-                        <img src="hud/water.png" class="waterhud">
-                    </div>
-                    <div class="water_border" v-else style="border: 5px solid #2F80ED;
-                    box-sizing: border-box;
-                    filter: drop-shadow(0px 0px 4px #2F80ED);
-                    transition: 3s;">
-                        <img src="hud/water.png" class="waterhud">
-                    </div>
-
-                </div>
-            </div> -->
-
+            
             <div class="hotkey" v-if="!hotkeyblock">
                 <div class="hotkey_wrapper">
 

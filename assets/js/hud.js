@@ -21,8 +21,10 @@
         // speed: 0,
         // fuel: 0,
         hp: 0,
-        eat: 70,
+        eat: 60,
+        maxeat: 534,
         water: 40,
+        maxwater: 100,
         inSafeZone: true,
         minimapFix: 0,
 
@@ -37,7 +39,9 @@
         maxspeed: 400,
     },
     computed: {
-        
+        seteat: function() {
+            return this.eat * 5.34;
+        }
     },
     methods: {
         setTime: (time, date) => {
