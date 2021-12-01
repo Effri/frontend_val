@@ -728,6 +728,8 @@ justify-content: flex-end;
 .hud .eatings {
   display: flex;
   justify-content: flex-end;
+  margin-top: 6px;
+  margin-right: -10px;
   // position: inherit;
   //   display: flex;
   //   flex-direction: column;
@@ -949,50 +951,66 @@ justify-content: flex-end;
 }
 
 .chart {
+  margin: 0;
+  zoom: 30%;
   position: relative;
   display: inline-block;
-  color: #999;
-  font-size: 20px;
+  /* color: #999; */
+  /* font-size: 20px; */
   text-align: center;
 }
 
-.chart figcaption {
-  padding: 50px 25px;
-  width: 100px;
-  height: 50px;
-  border: 5px solid #f0f0f0;
-  border-radius: 100px;
-  line-height: 50px;
+.chart_water {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 43%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+  }
 }
+
+// .chart figcaption {
+//   padding: 50px 25px;
+//   width: 100px;
+//   height: 50px;
+//   // border: 5px solid #f0f0f0;
+//   border-radius: 100px;
+//   line-height: 50px;
+// }
 
 .chart img {
   position: absolute;
   max-width: 100px;
   max-height: 100px;
-  background: white;
+  // background: white;
 }
 
-.node {
-  width: 56px;
-  height: 56px;
-  top: 45px;
-  left: 45px;
-}
+// .node {
+//   width: 56px;
+//   height: 56px;
+//   top: 45px;
+//   left: 45px;
+// }
 
 // .node + svg .outer {
 //   stroke: #83cd29;
 // }
 
 .chart svg {
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 0;
 }
 
 .outer {
   fill: transparent;
-  stroke: #333;
-  stroke-width: 5;
+  stroke: #fff;
+  border: 5px solid #FFFFFF;
+    /* box-sizing: border-box; */
+    filter: drop-shadow(0px 0px 6px #FFFFFF);
+  stroke-width: 10;
   stroke-dasharray: 534;
   transition: stroke-dashoffset 1s;
   -webkit-animation-play-state: running;
@@ -1013,22 +1031,22 @@ justify-content: flex-end;
 // }
 
 
-@-webkit-keyframes show25 {
-  from {
-    stroke-dashoffset: 537;
-  }
+// @-webkit-keyframes show25 {
+//   from {
+//     stroke-dashoffset: 537;
+//   }
   
-  to {
-    stroke-dashoffset: 401;
-  }
-}
+//   to {
+//     stroke-dashoffset: 401;
+//   }
+// }
 
-@keyframes show25 {
-  from {
-    stroke-dashoffset: 537;
-  }
+// @keyframes show25 {
+//   from {
+//     stroke-dashoffset: 537;
+//   }
   
-  to {
-    stroke-dashoffset: 401;
-  }
-}
+//   to {
+//     stroke-dashoffset: 401;
+//   }
+// }

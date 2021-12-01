@@ -21,9 +21,9 @@
         // speed: 0,
         // fuel: 0,
         hp: 0,
-        eat: 60,
+        eat: 100,
         maxeat: 534,
-        water: 40,
+        water: 58,
         maxwater: 100,
         inSafeZone: true,
         minimapFix: 0,
@@ -40,7 +40,10 @@
     },
     computed: {
         seteat: function() {
-            return this.eat * 5.34;
+            return this.eat * 4.85;
+        },
+        setwater: function() {
+            return this.water * 4.85;
         }
     },
     methods: {

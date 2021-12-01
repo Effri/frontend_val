@@ -4,6 +4,7 @@ const writeDo = 'do'
 const writeMe = 'me'
 const writeTry = 'try'
 const writeB = 'b'
+const writeF = 'f'
 
 let chat =
 {
@@ -36,6 +37,9 @@ function doInChat(slash){
         case "try":
             document.getElementsByTagName("input")[0].value = "/try "
             break;
+            case "f":
+                document.getElementsByTagName("input")[0].value = "/f "
+                break;
     
     
         default:
