@@ -2,7 +2,7 @@
     el: ".inGameHud",
     data: {
         personId: 0,
-        show: true,
+        show: false,
         ammo: 467,
         money: 50000000,
         bank: 158946,
@@ -14,7 +14,7 @@
         server: 0,
 		playerId : 0,
         online: 1000,
-        inVeh: true,
+        inVeh: false,
 		belt: false,
         engine: false,
         doors: false,
@@ -25,13 +25,13 @@
         maxeat: 534,
         water: 58,
         maxwater: 100,
-        inSafeZone: true,
+        inSafeZone: false,
         minimapFix: 0,
 
         bonusblock: false,
 		lastbonus: '',
         hotkeyblock: false,
-        givebonus: true,
+        givebonus: false,
 
         speed: 169,
         fuel: 72,
@@ -58,36 +58,6 @@
             this.hotkeyblock = !this.hotkeyblock;
         },
         
-
-        
-	// updateSpeed(currentspeed, maxspeed = 200)
-    //     {
-    //         this.speed = currentspeed;
-    //         var speedPercent = Math.floor(currentspeed / maxspeed * 100);
-    //         if(speedPercent > 100) speedPercent = 100;
-
-    //         var 
-    //             redColor = new Color(228, 66, 66),
-    //             whiteColor = new Color(255, 255, 255),
-    //             yellowColor = new Color(225, 228, 66),
-    //             start = whiteColor,
-    //             end = yellowColor;
-        
-    //         if (speedPercent > 50) {
-    //             speedPercent = speedPercent % 51;
-    //             start = yellowColor;
-    //             end = redColor;
-    //         }
-
-    //         var 
-    //             startColors = start.getColors(),
-    //             endColors = end.getColors();
-    //         var r = InterpolateColor(startColors.r, endColors.r, 50, speedPercent);
-    //         var g = InterpolateColor(startColors.g, endColors.g, 50, speedPercent);
-    //         var b = InterpolateColor(startColors.b, endColors.b, 50, speedPercent);
-        
-    //         $('.speedhud').css("color", "rgb(" + r + "," + g + "," + b + ")");           
-    //     }
     }
    
 })

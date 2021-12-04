@@ -782,7 +782,7 @@ p {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-  width: 67px;
+  padding: 0 20px;
   height: 39px;
   background: rgba(46, 46, 46, 0.71);
   margin-right: 3px;
@@ -865,4 +865,129 @@ p {
 .chart:hover .outer {
   stroke-dashoffset: 534 !important;
   -webkit-animation-play-state: paused;
+}
+
+@media (min-width: 2500px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: 1;
+  }
+  .hotkey {
+    top: 60% !important;
+  }
+}
+
+/* @media (min-width: 2000px) {
+	.gta-acount {
+		zoom: 1.2;
+	}
+}
+
+
+*/
+@media (max-width: 2000px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: 1;
+  }
+  .hotkey {
+    top: 60% !important;
+  }
+}
+
+@media (max-width: 1800px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: .89;
+  }
+  .hotkey {
+    top: 58% !important;
+  }
+}
+
+@media (max-width: 1600px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: .88;
+  }
+  .hotkey {
+    top: 55% !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: .82;
+  }
+  .hotkey {
+    top: 55% !important;
+  }
+}
+
+@media (max-width: 1300px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: .79;
+  }
+  .hotkey {
+    top: 55% !important;
+  }
+}
+
+@media (max-width: 1140px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: .75;
+  }
+  .hotkey {
+    top: 60% !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: .75;
+  }
+  .hotkey {
+    top: 60% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .chat,
+.header_hud,
+.speedometer_hud,
+.steet_block,
+#notify {
+    zoom: .7;
+  }
+  .hotkey {
+    top: 60% !important;
+  }
 }

@@ -1,10 +1,16 @@
 const chatmsgs = document.getElementById('chat_messages');
 const chatvar = $("#chat");
+const writeNothing = ''
 const writeDo = 'do'
 const writeMe = 'me'
 const writeTry = 'try'
 const writeB = 'b'
 const writeF = 'f'
+const writeFb = 'fb'
+
+document.getElementById("clear_btn").onclick = function(e) {
+    document.getElementById("chat_msg").value = "";
+  }
 
 let chat =
 {
@@ -37,9 +43,15 @@ function doInChat(slash){
         case "try":
             document.getElementsByTagName("input")[0].value = "/try "
             break;
-            case "f":
-                document.getElementsByTagName("input")[0].value = "/f "
-                break;
+        case "f":
+            document.getElementsByTagName("input")[0].value = "/f "
+            break;
+        case "fb":
+            document.getElementsByTagName("input")[0].value = "/fb "
+            break;
+        case " ":
+            document.getElementsByTagName("input")[0].value = " "
+            break;
     
     
         default:
@@ -52,15 +64,19 @@ function enableChatInput(enable) {
         mp.invoke("focus", enable);
         if (enable) {
             chatvar.css("opacity", 1);
-            chat.input = chatvar.append(`<div><div class="input_wrapper">
+            chat.input = chatvar.append(`</ul><div class="input_wrapper">
             <input type="text" id="chat_msg" placeholder="Введите сообщение...">
             <img class="send" src="./assets/img/hud/send.svg" alt="">
         </div>
+        </div>
             <div class="text" v-if="active">
+                <span class="all" id="clear_btn">IC</span>
                 <span class="all" onclick="doInChat(writeMe)">ME</span>
                 <span class="all" onclick="doInChat(writeDo)">DO</span>
                 <span class="all" onclick="doInChat(writeB)">ООС</span>
-            </div></div></ul>`).children(":last");
+                <span class="all" onclick="doInChat(writeF)">Рация</span>
+                <span class="all" onclick="doInChat(writeFb)">ООС-рация</span>
+            </div></div>`).children(":last");
             chat.input.children("input").focus();
             mp.trigger("changeChatState", true);
         } else {
