@@ -1,0 +1,176 @@
+.petrol {
+  background-image: url("../img/petrol/bg_petrol.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Akrobat";
+  font-weight: 800;
+  color: #fff;
+}
+
+.petrol .petrol_wrapper {
+  max-width: 520px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.petrol .petrol_wrapper .petrol_title {
+  font-size: 48px;
+  line-height: 58px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.petrol .petrol_input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.petrol .petrol_input .input_count {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.petrol .petrol_input .sum_count {
+  position: absolute;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.petrol .petrol_input button {
+  font-family: "Akrobat";
+  border: none;
+  width: 66px;
+  height: 66px;
+  background: #ffb800;
+  box-shadow: 0px 0px 27px rgba(255, 184, 0, 0.37);
+  border-radius: 1px;
+  font-size: 48px;
+  line-height: 58px;
+  /* identical to box height */
+  color: #ffffff;
+}
+
+.petrol input {
+  font-family: "Akrobat";
+  text-align: center;
+  margin: 0 15px;
+  border: none;
+  width: 351px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 1px;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 29px;
+  color: #ffffff00;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.petrol .wrapper_title {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 12px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 1px;
+}
+
+.petrol .wrapper_title .title {
+  text-transform: uppercase;
+}
+
+.petrol .wrapper_title .cost {
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.petrol .btns {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.petrol .btns .btn.yes {
+  width: 374px;
+  height: 99px;
+  background: #FFB800;
+  border-radius: 1px;
+  font-size: 24px;
+  line-height: 29px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.petrol .btn_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.petrol .btn_main .btn {
+  cursor: pointer;
+  width: 134px;
+  height: 48px;
+  display: flex;
+  border-radius: 1px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 29px;
+  border-radius: 1px;
+}
+
+.petrol .btn_main .btn.gov {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.petrol .btn_main .btn.full {
+  background: #ff9878;
+}
+
+.petrol .btn_exit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.petrol .btn.no {
+  width: 259px;
+  height: 73px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 1px;
+}
+
+.petrol input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.petrol input::-webkit-outer-spin-button,
+.petrol input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

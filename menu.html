@@ -25,6 +25,7 @@
     <!-- <link rel="stylesheet" href="./assets/css/fmenu_copy.css"> -->
     <link rel="stylesheet" href="./assets/css/fmenu.css">
     <link rel="stylesheet" href="./assets/css/auto_new.css">
+    <link rel="stylesheet" href="./assets/css/petrol.css">
     <link rel="stylesheet" href="./assets/fonts/akrobat.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
@@ -258,12 +259,42 @@
         </div>
     </div>
 
+    <div class="petrol" v-if="active">
+        <div class="petrol_wrapper">
+            <div class="petrol_title">Заправка</div>
+            <div class="petrol_input">
+                <button class="decrease" type="button" @click="pop(input)">-</button>
+                <div class="input_count"><input type="number" v-model.number="input" v.model.text="litr">
+                <div class="sum_count">{{setLitr}}</div></div>
+                <button class="increase" type="button" @click="add(input)">+</button>
+            </div>
+
+            <div class="wrapper_title">
+                <div class="title">Итого к оплате</div>
+                <div class="cost">$ {{ sumFuel | formatThousands }}</div>
+            </div>
+            
+            <div class="btns">
+                <div class="btn_main">
+                    <div class="btn gov" @click="gov">GOV</div>
+                    <div class="btn full" @click="full">FULL</div>
+                </div>
+                <div class="btn yes" @click="yes">Оплатить</div>
+                
+            </div>
+            <div class="btn_exit">
+                <div class="btn no" @click="no">Покинуть заправку</div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
     </script>
     <script src="./assets/js/auto.js"></script>
     <script src="./assets/js/fmenu.js"></script>
+    <script src="./assets/js/petrol.js"></script>
     <script>
         $(".model_list").click(function (e) {
             e.preventDefault();
