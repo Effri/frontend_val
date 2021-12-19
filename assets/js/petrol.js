@@ -1,7 +1,7 @@
 ﻿var petrol = new Vue({
     el: ".petrol",
     data: {
-        active: true,
+        active: false,
         input: 1,
         litr: ' л.',
         cost: 5, //стоимость топлива

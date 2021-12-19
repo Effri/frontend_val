@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="./assets/css/fmenu.css">
     <link rel="stylesheet" href="./assets/css/auto_new.css">
     <link rel="stylesheet" href="./assets/css/petrol.css">
+    <link rel="stylesheet" href="./assets/css/clothes.css">
     <link rel="stylesheet" href="./assets/fonts/akrobat.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
@@ -33,7 +34,7 @@
 
 </head>
 
-<body>
+<body style="background-color: darkblue;">
     <script>
         Vue.filter('formatThousands', (x) => {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -132,6 +133,103 @@
             <div class="img_2"></div>
             <img class="img_3" src="./assets/img/fmenu/img2.svg" alt="">
         </div>
+    </div>
+
+    <div class="clothes" v-if="active">
+        <div class="clothes__block">
+            <div class="clothes__bg"></div>
+
+        <img class="cloth_logo" src="./assets/img/clothes/logo.png" alt="">
+        
+        <div class="left">
+			<div class="clothes__title-block">
+                <div class="clothes__title">
+                    <div class="clothes__title-info">
+                        <img src="./assets/img/clothes/logo_clothes.svg" alt="">
+                    </div>
+                    <div class="clothes_information">Добро пожаловать в магазин, здесь вы можете увидеть всю модную одежду и украшения нашего штата.</div>
+                    <!-- <div class="clothes__close" @click="exit">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.4118 9L17.529 3.88278C18.157 3.25483 18.157 2.2367 17.529 1.60824L16.3918 0.470966C15.7638 -0.156989 14.7457 -0.156989 14.1172 0.470966L9 5.58818L3.88278 0.470966C3.25483 -0.156989 2.2367 -0.156989 1.60824 0.470966L0.470966 1.60824C-0.156989 2.23619 -0.156989 3.25432 0.470966 3.88278L5.58818 9L0.470966 14.1172C-0.156989 14.7452 -0.156989 15.7633 0.470966 16.3918L1.60824 17.529C2.23619 18.157 3.25483 18.157 3.88278 17.529L9 12.4118L14.1172 17.529C14.7452 18.157 15.7638 18.157 16.3918 17.529L17.529 16.3918C18.157 15.7638 18.157 14.7457 17.529 14.1172L12.4118 9Z"
+                                fill="white" />
+                        </svg>
+                    </div> -->
+                </div>
+
+            </div>
+            <div @click="exit" class="btn exit">
+                <div class="btn_main_exit">Выйти</div></div>
+            <div class="model_wrapper">
+			
+            <div @click="btn(0,$event)" class="model_list" v-bind:class="{ active: btns[0] }">Шляпа</div>
+            <div @click="btn(1,$event)" class="model_list" v-bind:class="{ active: btns[1] }">Верхняя одежда</div>
+            <div @click="btn(2,$event)" class="model_list" v-bind:class="{ active: btns[2] }">Нижняя одежда</div>
+            <div @click="btn(3,$event)" class="model_list" v-bind:class="{ active: btns[3] }">Штаны</div>
+            <div @click="btn(4,$event)" class="model_list" v-bind:class="{ active: btns[4] }">Обувь</div>
+            <div @click="btn(5,$event)" class="model_list" v-bind:class="{ active: btns[5] }">Перчатки</div>
+            <div @click="btn(6,$event)" class="model_list" v-bind:class="{ active: btns[6] }">Часы</div>
+            <div @click="btn(7,$event)" class="model_list" v-bind:class="{ active: btns[7] }">Очки</div>
+            <div @click="btn(8,$event)" class="model_list" v-bind:class="{ active: btns[8] }">Украшения</div>
+        </div>
+        </div>
+
+        <div class="right">
+            <div class="block">
+				<div class="clothes_item">
+                    <div class="clothes_buy">Стиль одежды</div>
+                    <div class="clothes_check">
+                        <i @click="left(0)" class="fas fa-caret-left"></i>
+                        <div>{{styles[indexS]}}</div>
+                        <i @click="right(0)" class="fas fa-caret-right"></i>
+                    </div>
+                </div>
+                <div class="clothes_item"> 
+                    <div class="clothes_buy">Цвет одежды</div>
+                        <div class="clothes_check">          
+                            <i @click="left(1)" class="fas fa-caret-left"></i>
+                            <div>{{colors[indexC]}}</div>
+                            <i @click="right(1)" class="fas fa-caret-right"></i>
+                        </div>
+                    </div>
+                <div class="price_item">
+                    <div class="price_buy">Цена</div>
+                    <span class="item">$ {{prices[indexS] | formatThousands }}</span>
+                </div>
+                <div @click="buy" class="btn buy">Купить</div>             
+            </div>
+            
+            <div class="auto_hotkeys">
+                <div class="auto_hotkeys_block">
+                    <span>Используйте, чтобы вращать персонажа на 360*</span>
+                    <div class="auto_hotkey_btn first">
+                        <img src="./assets/img/auto/mouse.svg" alt="">
+                    </div>
+                </div>
+                <div class="auto_hotkeys_block">
+                    <span>Нажмите, чтобы закрыть меню магазина</span>
+                    <div class="auto_hotkey_btn">Esc</div>
+                </div>
+                <div class="auto_hotkeys_block">
+                    <span>Нажмите, чтобы приобрести одежду</span>
+                    <div class="auto_hotkey_btn">Enter</div>
+                </div>
+                <div class="auto_hotkeys_block">
+                    <span>Используйте, чтобы листать категории</span>
+                    <div class="auto_hotkey_btn last">
+                        <img src="./assets/img/auto/arr_1.svg" alt="">
+                    </div>
+                    <div class="auto_hotkey_btn last">
+                        <img src="./assets/img/auto/arr_2.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        
+        
     </div>
 
     <div class="auto__content" v-if="active">
@@ -259,6 +357,8 @@
         </div>
     </div>
 
+    
+
     <div class="petrol" v-if="active">
         <div class="petrol_wrapper">
             <div class="petrol_title">Заправка</div>
@@ -294,6 +394,7 @@
     </script>
     <script src="./assets/js/auto.js"></script>
     <script src="./assets/js/fmenu.js"></script>
+    <script src="./assets/js/clothes.js"></script>
     <script src="./assets/js/petrol.js"></script>
     <script>
         $(".model_list").click(function (e) {

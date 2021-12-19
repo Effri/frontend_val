@@ -1,0 +1,268 @@
+.clothes {
+  font-family: "Akrobat";
+  font-style: normal;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.clothes .cloth_logo {
+  position: absolute;
+  top: 25px;
+  right: 38px;
+}
+
+.clothes .clothes__block {
+  display: flex;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.clothes .left {
+  padding: 24px 0 0 29px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 367px;
+}
+
+.clothes .left .exit {
+  margin-top: 31px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.clothes .left .exit .btn_main_exit {
+  display: flex;
+  width: 64px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 1px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.clothes .left .clothes_information {
+  margin-left: 15px;
+  max-width: 402px;
+  width: 125%;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: rgba(174, 174, 174, 0.7);
+}
+
+.clothes .left .clothes__close {
+  cursor: pointer;
+  right: 0;
+  right: 30px;
+  position: absolute;
+  width: 0px;
+  top: 10px;
+  opacity: 0.1;
+}
+
+.clothes .right {
+  padding-right: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.clothes .right .clothes_item,
+.clothes .right .price_item {
+  margin-top: 8px;
+  padding-left: 26px;
+  width: 325px;
+  height: 78px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.clothes .right .clothes_item .item,
+.clothes .right .price_item .item {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+}
+
+.clothes .right .clothes_item .clothes_buy,
+.clothes .right .clothes_item .price_buy,
+.clothes .right .price_item .clothes_buy,
+.clothes .right .price_item .price_buy {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #c2c2c2;
+}
+
+.clothes .right .clothes_item .clothes_check,
+.clothes .right .price_item .clothes_check {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.clothes .right .clothes_item .clothes_check .fas.fa-caret-left,
+.clothes .right .price_item .clothes_check .fas.fa-caret-left {
+  color: #fff;
+}
+
+.clothes .right .clothes_item .clothes_check div,
+.clothes .right .price_item .clothes_check div {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  padding: 0 24px;
+  color: #fff;
+}
+
+.clothes .right .clothes_item .clothes_check .fas.fa-caret-right,
+.clothes .right .price_item .clothes_check .fas.fa-caret-right {
+  color: #ffb800;
+}
+
+.clothes .right .clothes_item .price_buy span,
+.clothes .right .price_item .price_buy span {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.clothes .right .buy {
+  cursor: pointer;
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-around;
+  min-width: 351px;
+  max-height: 66px;
+  width: 100%;
+  height: 100%;
+  background: #ffb800;
+  box-shadow: 0px 0px 27px #ffb800;
+  border-radius: 1px;
+  align-items: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  color: #ffffff;
+}
+
+.clothes .clothes__bg {
+  background-image: url(../img/clothes/bg_clothes.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.clothes .model_wrapper {
+  overflow-y: scroll;
+  height: 584px;
+  transform: scaleX(-1);
+}
+
+.clothes .model_list {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  transform: scaleX(-1);
+  margin-right: 12px;
+  padding: 0 20px;
+  max-width: 312px;
+  width: 100%;
+  max-height: 66px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 1px;
+  align-items: center;
+  overflow-wrap: anywhere;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.clothes .model_list.active {
+  background: #ffb800;
+  box-shadow: 0px 0px 27px rgba(255, 184, 0, 0.37);
+  transition: all 0.2s;
+}
+
+.clothes .model_list:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 2000px) {
+  .left,
+.right {
+    zoom: 1;
+  }
+}
+
+@media (max-width: 1800px) {
+  .left,
+.right {
+    zoom: 1;
+  }
+}
+
+@media (max-width: 1600px) {
+  .left,
+.right {
+    zoom: 1;
+  }
+}
+
+@media (max-width: 1400px) {
+  .left,
+.right {
+    zoom: .88;
+  }
+}
+
+@media (max-width: 1300px) {
+  .left,
+.right {
+    zoom: .82;
+  }
+}
+
+@media (max-width: 1140px) {
+  .left,
+.right {
+    zoom: .79;
+  }
+}
+
+@media (max-width: 1000px) {
+  .left,
+.right {
+    zoom: .75;
+  }
+}
+
+@media (max-width: 900px) {
+  .left,
+.right {
+    zoom: .7;
+  }
+}
